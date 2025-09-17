@@ -3,7 +3,7 @@ import Image from "next/image";
 export default function SobreMi() {
   return (
     <>
-      <section className="max-w-4xl mx-auto px-4 py-10 mt-20">
+      <section className="max-w-4xl mx-auto px-4 py-10 mt-20 fade-in-fwd">
         <h1 className="text-3xl font-bold text-center mb-6 text-[#8A5F79]">
           Sobre mí
         </h1>

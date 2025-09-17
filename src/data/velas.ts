@@ -19,5 +19,93 @@ export const velas: Vela[] = [
     precio: "$1700",
     imagen: "/velas_2.jpg",
   },
+  {
+    nombre: "Vela Relax",
+    descripcion: "Aromas suaves para relajarte",
+    precio: "$1500",
+    imagen: "/velas_3.jpg",
+  }, {
+    nombre: "Vela Relax",
+    descripcion: "Aromas suaves para relajarte",
+    precio: "$1500",
+    imagen: "/velas_4.jpg",
+  }, {
+    nombre: "Vela Relax",
+    descripcion: "Aromas suaves para relajarte",
+    precio: "$1500",
+    imagen: "/velas_5.jpg",
+  }, {
+    nombre: "Vela Relax",
+    descripcion: "Aromas suaves para relajarte",
+    precio: "$1500",
+    imagen: "/velas_6.jpg",
+  }, {
+    nombre: "Vela Relax",
+    descripcion: "Aromas suaves para relajarte",
+    precio: "$1500",
+    imagen: "/velas_7.jpg",
+  }, {
+    nombre: "Vela Relax",
+    descripcion: "Aromas suaves para relajarte",
+    precio: "$1500",
+    imagen: "/velas_8.jpg",
+  }, {
+    nombre: "Vela Relax",
+    descripcion: "Aromas suaves para relajarte",
+    precio: "$1500",
+    imagen: "/velas_9.jpg",
+  }, {
+    nombre: "Vela Relax",
+    descripcion: "Aromas suaves para relajarte",
+    precio: "$1500",
+    imagen: "/velas_10.jpg",
+  }, {
+    nombre: "Vela Relax",
+    descripcion: "Aromas suaves para relajarte",
+    precio: "$1500",
+    imagen: "/velas_11.jpg",
+  }, {
+    nombre: "Vela Relax",
+    descripcion: "Aromas suaves para relajarte",
+    precio: "$1500",
+    imagen: "/velas_12.jpg",
+  },
+  {
+    nombre: "Vela Relax",
+    descripcion: "Aromas suaves para relajarte",
+    precio: "$1500",
+    imagen: "/velas_13.jpg",
+  },
+  {
+    nombre: "Vela Relax",
+    descripcion: "Aromas suaves para relajarte",
+    precio: "$1500",
+    imagen: "/velas_14.jpg",
+  },
+  {
+    nombre: "Vela Relax",
+    descripcion: "Aromas suaves para relajarte",
+    precio: "$1500",
+    imagen: "/velas_15.jpg",
+  },
+  {
+    nombre: "Vela Relax",
+    descripcion: "Aromas suaves para relajarte",
+    precio: "$1500",
+    imagen: "/velas_16.jpg",
+  },
+  {
+    nombre: "Vela Relax",
+    descripcion: "Aromas suaves para relajarte",
+    precio: "$1500",
+    imagen: "/velas_17.jpg",
+  },
+  {
+    nombre: "Vela Relax",
+    descripcion: "Aromas suaves para relajarte",
+    precio: "$1500",
+    imagen: "/velas_18.jpg",
+  },
+
   // Agregás más velas así
 ];

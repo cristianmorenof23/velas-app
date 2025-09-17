@@ -26,7 +26,7 @@ export default function VelaCard({
         alt={nombre}
         width={400}
         height={300}
-        className="w-full h-48 object-cover"
+        className="w-full h-48 object-cover hover:scale-105 transition-all"
       />
       <div className="p-4 flex flex-col justify-between flex-1">
         <h3 className="text-lg font-semibold text-[#8A5F79]">{nombre}</h3>
