@@ -4,8 +4,8 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Luz Serena - Velas Artesanales",
   description: "Catálogo de velas artesanales Luz Serena",
+  icons: "/logo_vela.jpg",
 };
-
 
 
 export default function HomeLayout({

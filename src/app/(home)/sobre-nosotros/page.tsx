@@ -1,4 +1,13 @@
+import { Metadata } from "next";
 import Image from "next/image";
+
+export const metadata: Metadata = {
+  title: "Luz Serena - Sobre Mi",
+  description: "Historia de velas artesanales Luz Serena",
+  icons: "/logo_vela.png",
+
+};
+
 
 export default function SobreMi() {
   return (
@@ -9,7 +18,7 @@ export default function SobreMi() {
         </h1>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
           <Image
-            src="/sobre-mi.jpg" // poné foto de ella o de su taller en public
+            src="/women.jpg"
             alt="Sobre mí"
             width={500}
             height={400}
