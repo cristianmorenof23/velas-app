@@ -4,7 +4,7 @@ import Image from "next/image";
 
 export default function Contacto() {
   return (
-    <section className="max-w-5xl mx-auto px-4 py-16 fade-in-fwd mt-20">
+    <section className="max-w-5xl mx-auto px-4 py-16 fade-in-fwd mt-32">
       <div className="flex flex-col md:flex-row items-center gap-10">
         {/* Imagen decorativa */}
         <div className="md:w-1/2">

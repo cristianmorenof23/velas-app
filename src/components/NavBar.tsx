@@ -21,12 +21,13 @@ export default function Navbar() {
     <nav className="fixed top-0 w-full bg-[#B886A3] text-[#F7F3ED] shadow-lg z-50">
       <div className="max-w-6xl mx-auto flex items-center justify-between p-4">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2 hover:opacity-80 transition">
+        <Link href="/" className="flex items-center gap-2 hover:cursor-pointer hover:opacity-80 transition hover:scale-110">
           <Image
-            src="/logo_velas.png"
+            src="/logo_vela.png"
             alt="Luz Serena"
-            width={60}
-            height={60}
+            width={100}
+            height={100}
+            priority
             className="object-contain"
           />
           <h1 className="text-2xl font-bold">Luz Serena</h1>
@@ -44,19 +45,17 @@ export default function Navbar() {
               {link.icon}
               {/* Texto */}
               <span
-                className={`transition-colors ${
-                  pathname === link.href ? "text-[#F7F3ED]" : "group-hover:opacity-80"
-                }`}
+                className={`transition-colors ${pathname === link.href ? "text-[#F7F3ED]" : "group-hover:opacity-80"
+                  }`}
               >
                 {link.name}
               </span>
               {/* Subrayado animado */}
               <span
-                className={`absolute left-0 -bottom-1 h-[2px] bg-[#F7F3ED] transition-all duration-300 ease-in-out ${
-                  pathname === link.href
+                className={`absolute left-0 -bottom-1 h-[2px] bg-[#F7F3ED] transition-all duration-300 ease-in-out ${pathname === link.href
                     ? "w-full"
                     : "w-0 group-hover:w-full"
-                }`}
+                  }`}
               />
             </Link>
           ))}
@@ -74,9 +73,8 @@ export default function Navbar() {
 
       {/* Menú Mobile */}
       <div
-        className={`fixed top-0 right-0 h-full w-3/4 max-w-xs bg-[#B886A3] text-[#F7F3ED] shadow-lg transform transition-transform duration-300 ease-in-out z-50 ${
-          open ? "translate-x-0" : "translate-x-full"
-        }`}
+        className={`fixed top-0 right-0 h-full w-3/4 max-w-xs bg-[#B886A3] text-[#F7F3ED] shadow-lg transform transition-transform duration-300 ease-in-out z-50 ${open ? "translate-x-0" : "translate-x-full"
+          }`}
       >
         <div className="flex justify-end p-4">
           <button
@@ -97,18 +95,16 @@ export default function Navbar() {
             >
               {link.icon}
               <span
-                className={`transition-colors ${
-                  pathname === link.href ? "text-[#F7F3ED]" : "group-hover:opacity-80"
-                }`}
+                className={`transition-colors ${pathname === link.href ? "text-[#F7F3ED]" : "group-hover:opacity-80"
+                  }`}
               >
                 {link.name}
               </span>
               <span
-                className={`absolute left-0 -bottom-1 h-[2px] bg-[#F7F3ED] transition-all duration-300 ease-in-out ${
-                  pathname === link.href
+                className={`absolute left-0 -bottom-1 h-[2px] bg-[#F7F3ED] transition-all duration-300 ease-in-out ${pathname === link.href
                     ? "w-full"
                     : "w-0 group-hover:w-full"
-                }`}
+                  }`}
               />
             </Link>
           ))}
