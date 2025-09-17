@@ -3,6 +3,8 @@ import { useState } from "react";
 import Link from "next/link";
 import { FiMenu, FiX, FiHome, FiBook, FiUser, FiMail } from "react-icons/fi";
 import { usePathname } from "next/navigation";
+import Image from "next/image";
+
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
@@ -20,13 +22,13 @@ export default function Navbar() {
       <div className="max-w-6xl mx-auto flex items-center justify-between p-4">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 hover:opacity-80 transition">
-          {/* <Image
-            src="/logo.jpg"
+          <Image
+            src="/logo_velas.png"
             alt="Luz Serena"
             width={60}
             height={60}
             className="object-contain"
-          /> */}
+          />
           <h1 className="text-2xl font-bold">Luz Serena</h1>
         </Link>
 
