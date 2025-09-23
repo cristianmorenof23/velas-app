@@ -7,6 +7,7 @@ import Image from "next/image";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null); // Estado para submenus móviles
   const pathname = usePathname();
 
   const links = [
@@ -50,26 +51,19 @@ export default function Navbar() {
         <div className="hidden md:flex gap-10 font-bold text-lg">
           {links.map((link) => (
             <div key={link.href} className="relative group">
-              {/* Link principal */}
-              <Link
-                href={link.href}
-                className="flex items-center gap-2 relative"
-              >
+              <Link href={link.href} className="flex items-center gap-2 relative">
                 {link.icon}
                 <span
-                  className={`transition-colors ${pathname === link.href ? "text-[#F7F3ED]" : "group-hover:opacity-80"
-                    }`}
+                  className={`transition-colors ${pathname === link.href ? "text-[#F7F3ED]" : "group-hover:opacity-80"}`}
                 >
                   {link.name}
                 </span>
-                {/* Subrayado animado */}
                 <span
-                  className={`absolute left-0 -bottom-1 h-[2px] bg-[#F7F3ED] transition-all duration-300 ease-in-out ${pathname === link.href ? "w-full" : "w-0 group-hover:w-full"
-                    }`}
+                  className={`absolute left-0 -bottom-1 h-[2px] bg-[#F7F3ED] transition-all duration-300 ease-in-out ${pathname === link.href ? "w-full" : "w-0 group-hover:w-full"}`}
                 />
               </Link>
 
-              {/* Dropdown */}
+              {/* Dropdown Desktop */}
               {link.sublinks && (
                 <div className="absolute left-0 mt-2 hidden group-hover:block bg-[#B886A3] shadow-lg rounded-lg z-50">
                   <ul className="py-2 w-56">
@@ -117,16 +111,23 @@ export default function Navbar() {
         <nav className="flex flex-col gap-6 px-6 mt-6 text-lg font-semibold">
           {links.map((link) => (
             <div key={link.href}>
-              <Link
-                href={link.href}
-                onClick={() => setOpen(false)}
-                className="flex items-center gap-2"
+              <div
+                className="flex items-center justify-between gap-2 cursor-pointer"
+                onClick={() =>
+                  link.sublinks
+                    ? setOpenDropdown(openDropdown === link.name ? null : link.name)
+                    : setOpen(false)
+                }
               >
-                {link.icon}
-                {link.name}
-              </Link>
+                <Link href={link.href} className="flex items-center gap-2">
+                  {link.icon}
+                  {link.name}
+                </Link>
+                {link.sublinks && <span>{openDropdown === link.name ? "-" : "+"}</span>}
+              </div>
+
               {/* Sublinks Mobile */}
-              {link.sublinks && (
+              {link.sublinks && openDropdown === link.name && (
                 <div className="ml-6 mt-2 flex flex-col gap-2">
                   {link.sublinks.map((sublink) => (
                     <Link
