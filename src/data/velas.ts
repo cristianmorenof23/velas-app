@@ -106,6 +106,62 @@ export const velas: Vela[] = [
     precio: "$1500",
     imagen: "/velas_18.jpg",
   },
+    {
+    nombre: "Vela Relax",
+    descripcion: "Aromas suaves para relajarte",
+    precio: "$1500",
+    imagen: "/velas_19.jpg",
+  },
+    {
+    nombre: "Vela Relax",
+    descripcion: "Aromas suaves para relajarte",
+    precio: "$1500",
+    imagen: "/velas_20.jpg",
+  },
+    {
+    nombre: "Vela Relax",
+    descripcion: "Aromas suaves para relajarte",
+    precio: "$1500",
+    imagen: "/velas_21.jpg",
+  },
+    {
+    nombre: "Vela Relax",
+    descripcion: "Aromas suaves para relajarte",
+    precio: "$1500",
+    imagen: "/velas_22.jpg",
+  },
+    {
+    nombre: "Vela Relax",
+    descripcion: "Aromas suaves para relajarte",
+    precio: "$1500",
+    imagen: "/velas_23.jpg",
+  },
+    {
+    nombre: "Vela Relax",
+    descripcion: "Aromas suaves para relajarte",
+    precio: "$1500",
+    imagen: "/velas_24.jpg",
+  },
+    {
+    nombre: "Vela Relax",
+    descripcion: "Aromas suaves para relajarte",
+    precio: "$1500",
+    imagen: "/velas_25.jpg",
+  },
+    {
+    nombre: "Vela Relax",
+    descripcion: "Aromas suaves para relajarte",
+    precio: "$1500",
+    imagen: "/velas_26.jpg",
+  },
+    {
+    nombre: "Vela Relax",
+    descripcion: "Aromas suaves para relajarte",
+    precio: "$1500",
+    imagen: "/velas_27.jpg",
+  },
+
+
 
   // Agregás más velas así
 ];

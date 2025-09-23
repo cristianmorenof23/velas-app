@@ -17,6 +17,11 @@ export default function HomePage() {
       title: "Vela Energía",
       text: "Fragancia cítrica para energizarte.",
     },
+    {
+      img: "/velas_19.jpg",
+      title: "Vela Energía",
+      text: "Fragancia cítrica para energizarte.",
+    },
   ];
 
   return (

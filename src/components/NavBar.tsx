@@ -5,14 +5,24 @@ import { FiMenu, FiX, FiHome, FiBook, FiUser, FiMail } from "react-icons/fi";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
 
-
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
 
   const links = [
     { name: "Inicio", href: "/", icon: <FiHome size={18} /> },
-    { name: "Catálogo", href: "/catalogo", icon: <FiBook size={18} /> },
+    {
+      name: "Catálogo",
+      href: "/catalogo",
+      icon: <FiBook size={18} />,
+      sublinks: [
+        { name: "Velas", href: "/catalogo" },
+        { name: "Carrusel sin tapa", href: "/catalogo/carrusel-sin-tapa" },
+        { name: "Porta Saumerios de Yeso", href: "/catalogo/porta-saumerios-yeso" },
+        { name: "Bandejas de Yeso", href: "/catalogo/bandejas-yeso" },
+        { name: "Vaso de Yogurt con Tapa", href: "/catalogo/vaso-yogurt-tapa" },
+      ],
+    },
     { name: "Sobre mí", href: "/sobre-nosotros", icon: <FiUser size={18} /> },
     { name: "Contacto", href: "/contacto", icon: <FiMail size={18} /> },
   ];
@@ -21,7 +31,10 @@ export default function Navbar() {
     <nav className="fixed top-0 w-full bg-[#B886A3] text-[#F7F3ED] shadow-lg z-50">
       <div className="max-w-6xl mx-auto flex items-center justify-between p-4">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2 hover:cursor-pointer hover:opacity-80 transition hover:scale-110">
+        <Link
+          href="/"
+          className="flex items-center gap-2 hover:cursor-pointer hover:opacity-80 transition hover:scale-110"
+        >
           <Image
             src="/logo_vela.png"
             alt="Luz Serena"
@@ -36,28 +49,44 @@ export default function Navbar() {
         {/* Menú Desktop */}
         <div className="hidden md:flex gap-10 font-bold text-lg">
           {links.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="relative flex items-center gap-2 group"
-            >
-              {/* Ícono */}
-              {link.icon}
-              {/* Texto */}
-              <span
-                className={`transition-colors ${pathname === link.href ? "text-[#F7F3ED]" : "group-hover:opacity-80"
-                  }`}
+            <div key={link.href} className="relative group">
+              {/* Link principal */}
+              <Link
+                href={link.href}
+                className="flex items-center gap-2 relative"
               >
-                {link.name}
-              </span>
-              {/* Subrayado animado */}
-              <span
-                className={`absolute left-0 -bottom-1 h-[2px] bg-[#F7F3ED] transition-all duration-300 ease-in-out ${pathname === link.href
-                    ? "w-full"
-                    : "w-0 group-hover:w-full"
-                  }`}
-              />
-            </Link>
+                {link.icon}
+                <span
+                  className={`transition-colors ${pathname === link.href ? "text-[#F7F3ED]" : "group-hover:opacity-80"
+                    }`}
+                >
+                  {link.name}
+                </span>
+                {/* Subrayado animado */}
+                <span
+                  className={`absolute left-0 -bottom-1 h-[2px] bg-[#F7F3ED] transition-all duration-300 ease-in-out ${pathname === link.href ? "w-full" : "w-0 group-hover:w-full"
+                    }`}
+                />
+              </Link>
+
+              {/* Dropdown */}
+              {link.sublinks && (
+                <div className="absolute left-0 mt-2 hidden group-hover:block bg-[#B886A3] shadow-lg rounded-lg z-50">
+                  <ul className="py-2 w-56">
+                    {link.sublinks.map((sublink) => (
+                      <li key={sublink.href}>
+                        <Link
+                          href={sublink.href}
+                          className="block px-4 py-2 hover:bg-[#A87493] transition"
+                        >
+                          {sublink.name}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </div>
           ))}
         </div>
 
@@ -87,26 +116,31 @@ export default function Navbar() {
 
         <nav className="flex flex-col gap-6 px-6 mt-6 text-lg font-semibold">
           {links.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              onClick={() => setOpen(false)}
-              className="relative flex items-center gap-2 group"
-            >
-              {link.icon}
-              <span
-                className={`transition-colors ${pathname === link.href ? "text-[#F7F3ED]" : "group-hover:opacity-80"
-                  }`}
+            <div key={link.href}>
+              <Link
+                href={link.href}
+                onClick={() => setOpen(false)}
+                className="flex items-center gap-2"
               >
+                {link.icon}
                 {link.name}
-              </span>
-              <span
-                className={`absolute left-0 -bottom-1 h-[2px] bg-[#F7F3ED] transition-all duration-300 ease-in-out ${pathname === link.href
-                    ? "w-full"
-                    : "w-0 group-hover:w-full"
-                  }`}
-              />
-            </Link>
+              </Link>
+              {/* Sublinks Mobile */}
+              {link.sublinks && (
+                <div className="ml-6 mt-2 flex flex-col gap-2">
+                  {link.sublinks.map((sublink) => (
+                    <Link
+                      key={sublink.href}
+                      href={sublink.href}
+                      onClick={() => setOpen(false)}
+                      className="text-sm hover:opacity-80"
+                    >
+                      {sublink.name}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
           ))}
         </nav>
       </div>
