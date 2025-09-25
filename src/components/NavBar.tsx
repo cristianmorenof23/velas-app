@@ -1,14 +1,22 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
-import { FiMenu, FiX, FiHome, FiBook, FiUser, FiMail } from "react-icons/fi";
+import {
+  FiMenu,
+  FiX,
+  FiHome,
+  FiBook,
+  FiUser,
+  FiMail,
+  FiChevronRight,
+} from "react-icons/fi";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
-  const [openDropdown, setOpenDropdown] = useState<string | null>(null); // Estado menú móvil
-  const [hoveredDropdown, setHoveredDropdown] = useState<string | null>(null); // Estado menú desktop
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const [hoveredDropdown, setHoveredDropdown] = useState<string | null>(null);
   const pathname = usePathname();
 
   const links = [
@@ -70,16 +78,20 @@ export default function Navbar() {
                 </span>
                 <span
                   className={`absolute left-0 -bottom-1 h-[2px] bg-[#F7F3ED] transition-all duration-300 ease-in-out ${
-                    pathname === link.href
-                      ? "w-full"
-                      : "w-0 hover:w-full"
+                    pathname === link.href ? "w-full" : "w-0 hover:w-full"
                   }`}
                 />
               </Link>
 
               {/* Dropdown Desktop */}
-              {link.sublinks && hoveredDropdown === link.name && (
-                <div className="absolute left-0 mt-2 bg-[#B886A3] shadow-lg rounded-lg z-50">
+              {link.sublinks && (
+                <div
+                  className={`absolute left-0 mt-2 bg-[#B886A3] shadow-lg rounded-lg z-50 overflow-hidden transform transition-all duration-300 ease-in-out ${
+                    hoveredDropdown === link.name
+                      ? "opacity-100 translate-y-0"
+                      : "opacity-0 -translate-y-2 pointer-events-none"
+                  }`}
+                >
                   <ul className="py-2 w-56">
                     {link.sublinks.map((sublink) => (
                       <li key={sublink.href}>
@@ -144,15 +156,26 @@ export default function Navbar() {
               </div>
 
               {/* Sublinks Mobile */}
-              {link.sublinks && openDropdown === link.name && (
-                <div className="ml-6 mt-2 flex flex-col gap-2">
+              {link.sublinks && (
+                <div
+                  className={`ml-6 mt-2 flex flex-col gap-2 transform transition-all duration-300 ease-in-out ${
+                    openDropdown === link.name
+                      ? "opacity-100 max-h-screen translate-y-0"
+                      : "opacity-0 max-h-0 -translate-y-2 overflow-hidden"
+                  }`}
+                >
                   {link.sublinks.map((sublink) => (
                     <Link
                       key={sublink.href}
                       href={sublink.href}
                       onClick={() => setOpen(false)}
-                      className="text-md hover:opacity-80"
+                      className={`text-md px-3 py-2 rounded-md flex items-center gap-2 transition ${
+                        pathname === sublink.href
+                          ? "bg-[#A87493]"
+                          : "hover:bg-[#A87493]"
+                      }`}
                     >
+                      <FiChevronRight size={14} />
                       {sublink.name}
                     </Link>
                   ))}

@@ -43,7 +43,7 @@ export default function Catalogo() {
               descripcion={v.descripcion}
               precio={v.precio}
               imagen={v.imagen}
-              telefono="549XXXXXXXXX" // teléfono de la señora
+              telefono="3517376607" // teléfono de la señora
             />
           ))}
         </div>
