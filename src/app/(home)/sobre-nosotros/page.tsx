@@ -26,7 +26,7 @@ export default function SobreMi() {
           />
           <div>
             <p className="text-gray-700 leading-relaxed">
-              ¡Hola! Soy <strong>Nombre de la señora</strong>, creadora de
+              ¡Hola! Soy <strong>Yani</strong>, creadora de
               <strong> Luz Serena Velas Artesanales</strong>. Cada vela está hecha a mano
               con dedicación y amor, utilizando materiales de calidad y aromas
               que inspiran calma y armonía.
