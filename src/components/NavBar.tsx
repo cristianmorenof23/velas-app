@@ -7,7 +7,8 @@ import Image from "next/image";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
-  const [openDropdown, setOpenDropdown] = useState<string | null>(null); // Estado para submenus móviles
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null); // Estado menú móvil
+  const [hoveredDropdown, setHoveredDropdown] = useState<string | null>(null); // Estado menú desktop
   const pathname = usePathname();
 
   const links = [
@@ -17,7 +18,7 @@ export default function Navbar() {
       href: "/catalogo",
       icon: <FiBook size={18} />,
       sublinks: [
-        { name: "Velas", href: "/catalogo" },
+        { name: "Velas", href: "/catalogo/velas" },
         { name: "Carrusel sin tapa", href: "/catalogo/carrusel-sin-tapa" },
         { name: "Porta Saumerios de Yeso", href: "/catalogo/porta-saumerios-yeso" },
         { name: "Bandejas de Yeso", href: "/catalogo/bandejas-yeso" },
@@ -50,22 +51,35 @@ export default function Navbar() {
         {/* Menú Desktop */}
         <div className="hidden md:flex gap-10 font-bold text-lg">
           {links.map((link) => (
-            <div key={link.href} className="relative group">
+            <div
+              key={link.href}
+              className="relative"
+              onMouseEnter={() => setHoveredDropdown(link.name)}
+              onMouseLeave={() => setHoveredDropdown(null)}
+            >
               <Link href={link.href} className="flex items-center gap-2 relative">
                 {link.icon}
                 <span
-                  className={`transition-colors ${pathname === link.href ? "text-[#F7F3ED]" : "group-hover:opacity-80"}`}
+                  className={`transition-colors ${
+                    pathname === link.href
+                      ? "text-[#F7F3ED]"
+                      : "hover:opacity-80"
+                  }`}
                 >
                   {link.name}
                 </span>
                 <span
-                  className={`absolute left-0 -bottom-1 h-[2px] bg-[#F7F3ED] transition-all duration-300 ease-in-out ${pathname === link.href ? "w-full" : "w-0 group-hover:w-full"}`}
+                  className={`absolute left-0 -bottom-1 h-[2px] bg-[#F7F3ED] transition-all duration-300 ease-in-out ${
+                    pathname === link.href
+                      ? "w-full"
+                      : "w-0 hover:w-full"
+                  }`}
                 />
               </Link>
 
               {/* Dropdown Desktop */}
-              {link.sublinks && (
-                <div className="absolute left-0 mt-2 hidden group-hover:block bg-[#B886A3] shadow-lg rounded-lg z-50">
+              {link.sublinks && hoveredDropdown === link.name && (
+                <div className="absolute left-0 mt-2 bg-[#B886A3] shadow-lg rounded-lg z-50">
                   <ul className="py-2 w-56">
                     {link.sublinks.map((sublink) => (
                       <li key={sublink.href}>
@@ -96,8 +110,9 @@ export default function Navbar() {
 
       {/* Menú Mobile */}
       <div
-        className={`fixed top-0 right-0 h-full w-3/4 max-w-xs bg-[#B886A3] text-[#F7F3ED] shadow-lg transform transition-transform duration-300 ease-in-out z-50 ${open ? "translate-x-0" : "translate-x-full"
-          }`}
+        className={`fixed top-0 right-0 h-full w-3/4 max-w-xs bg-[#B886A3] text-[#F7F3ED] shadow-lg transform transition-transform duration-300 ease-in-out z-50 ${
+          open ? "translate-x-0" : "translate-x-full"
+        }`}
       >
         <div className="flex justify-end p-4">
           <button
@@ -123,7 +138,9 @@ export default function Navbar() {
                   {link.icon}
                   {link.name}
                 </Link>
-                {link.sublinks && <span>{openDropdown === link.name ? "-" : "+"}</span>}
+                {link.sublinks && (
+                  <span>{openDropdown === link.name ? "-" : "+"}</span>
+                )}
               </div>
 
               {/* Sublinks Mobile */}
