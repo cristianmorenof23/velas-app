@@ -134,7 +134,7 @@ export default function Navbar() {
                       key={sublink.href}
                       href={sublink.href}
                       onClick={() => setOpen(false)}
-                      className="text-sm hover:opacity-80"
+                      className="text-md hover:opacity-80"
                     >
                       {sublink.name}
                     </Link>
