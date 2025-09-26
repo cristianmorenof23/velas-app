@@ -1,5 +1,6 @@
 "use client"
 import Image from 'next/image'
+import Link from 'next/link'
 import React from 'react'
 import { FaInstagram, FaWhatsapp } from 'react-icons/fa'
 
@@ -30,16 +31,16 @@ export default function ContactoClient() {
             consulta, podés escribirme directamente:
           </p>
           <div className="flex flex-col sm:flex-row sm:justify-start gap-4 mb-4">
-            <a
-              href="https://wa.me/549XXXXXXXXX?text=Hola!%20Quiero%20hacer%20una%20consulta"
+            <Link
+              href="https://wa.me/3517376607?text=Hola!%20Quiero%20hacer%20una%20consulta"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 bg-[#25D366] text-white px-6 py-3 rounded-lg hover:bg-green-500 transition shadow-md"
             >
               <FaWhatsapp size={20} />
               WhatsApp
-            </a>
-            <a
+            </Link>
+            <Link
               href="https://www.instagram.com/TUUSUARIO/"
               target="_blank"
               rel="noopener noreferrer"
@@ -47,16 +48,16 @@ export default function ContactoClient() {
             >
               <FaInstagram size={20} />
               Instagram
-            </a>
+            </Link>
           </div>
           <p className="text-gray-600 mt-2">
             O envianos un email a{" "}
-            <a
+            <Link
               href="mailto:tuemail@ejemplo.com"
               className="underline text-[#8A5F79]"
             >
               tuemail@ejemplo.com
-            </a>
+            </Link>
           </p>
         </div>
       </div>

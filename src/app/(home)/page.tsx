@@ -3,24 +3,36 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import Image from "next/image";
 import Link from "next/link";
+import { motion } from "framer-motion"; 
 import { FiHeart, FiWind, FiSmile } from "react-icons/fi";
+import { FaLeaf, FaBolt, FaHome, FaPeace } from "react-icons/fa";
 
 export default function HomePage() {
+  // Array de slides con beneficios + íconos
   const v = [
     {
       img: "/velas_5.jpg",
-      title: "Vela Relax",
-      text: "Aromas suaves para relajarte.",
+      title: "Relajación Profunda",
+      text: "Aromas suaves que calman la mente y reducen el estrés.",
+      icon: <FaLeaf size={60} className="mb-4 text-white drop-shadow-md" />,
     },
     {
       img: "/velas_3.jpg",
-      title: "Vela Energía",
-      text: "Fragancia cítrica para energizarte.",
+      title: "Energía Positiva",
+      text: "Fragancias cítricas que revitalizan y elevan tu ánimo.",
+      icon: <FaBolt size={60} className="mb-4 text-white drop-shadow-md" />,
     },
     {
-      img: "/velas_19.jpg",
-      title: "Vela Energía",
-      text: "Fragancia cítrica para energizarte.",
+      img: "/carrusel_1.jpg",
+      title: "Ambiente Acogedor",
+      text: "Crea espacios cálidos y llenos de armonía en tu hogar.",
+      icon: <FaHome size={60} className="mb-4 text-white drop-shadow-md" />,
+    },
+    {
+      img: "/carrusel_2.jpg",
+      title: "Bienestar Emocional",
+      text: "Transforma cada rincón en un santuario de paz.",
+      icon: <FaPeace size={60} className="mb-4 text-white drop-shadow-md" />,
     },
   ];
 
@@ -35,15 +47,15 @@ export default function HomePage() {
           loop={true}
           pagination={{ clickable: true }}
           navigation
-          autoplay={{ delay: 3000 }}
+          autoplay={{ delay: 4000 }}
           className="w-full bg-cover h-[500px] md:h-[500px]"
         >
-          {v.map((v, i) => (
+          {v.map((slide, i) => (
             <SwiperSlide key={i}>
               <div className="relative w-full h-full">
                 <Image
-                  src={v.img}
-                  alt={v.title}
+                  src={slide.img}
+                  alt={slide.title}
                   fill
                   priority
                   className="object-cover"
@@ -52,10 +64,21 @@ export default function HomePage() {
                 <div className="absolute inset-0 bg-black/40"></div>
                 {/* Texto dentro de la imagen */}
                 <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-white px-4">
-                  <h3 className="text-3xl md:text-5xl font-bold mb-4">
-                    {v.title}
-                  </h3>
-                  <p className="text-lg md:text-2xl">{v.text}</p>
+                  {/* Animación con framer-motion */}
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.8 }}
+                    className="flex flex-col items-center"
+                  >
+                    {slide.icon}
+                    <h3 className="text-3xl md:text-5xl font-bold mb-4 drop-shadow-lg">
+                      {slide.title}
+                    </h3>
+                    <p className="text-lg md:text-2xl drop-shadow-md">
+                      {slide.text}
+                    </p>
+                  </motion.div>
                 </div>
               </div>
             </SwiperSlide>
