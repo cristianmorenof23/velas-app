@@ -7,6 +7,7 @@ import { velas } from "@/data/velas";
 import BannerPromo from "@/components/banner/BannerPromo";
 import { bandejasYeso } from "@/data/bandeja_yeso";
 import { carrusel_sin_tapa } from "@/data/carrusel_sin_tapa";
+import ScrollTopButton from "@/components/botton-scroll/ScrollTopButton";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const dataMap: Record<string, any[]> = {
@@ -36,6 +37,8 @@ export default function CatalogoSlugPage() {
     <>
       {/* 🔥 Banner Promo arriba del catálogo */}
       <BannerPromo />
+      <ScrollTopButton />
+
 
       <section className="max-w-7xl mx-auto px-4 py-10 mt-10 fade-in-fwd">
         <h2 className="text-3xl font-bold text-center mb-10 text-[#8A5F79] capitalize">
