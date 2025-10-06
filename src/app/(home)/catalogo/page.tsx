@@ -100,7 +100,7 @@ export default function Catalogo() {
               nombre={v.nombre}
               descripcion={v.descripcion}
               precio={v.precio}
-              imagen={v.imagen}
+              imagenes={v.imagenes}
               telefono="3517376607"
             />
           ))}

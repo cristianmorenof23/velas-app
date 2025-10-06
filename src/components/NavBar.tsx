@@ -28,9 +28,7 @@ export default function Navbar() {
       sublinks: [
         { name: "Velas", href: "/catalogo/velas" },
         { name: "Carrusel sin tapa", href: "/catalogo/carrusel-sin-tapa" },
-        { name: "Porta Saumerios de Yeso", href: "/catalogo/porta-saumerios-yeso" },
         { name: "Bandejas de Yeso", href: "/catalogo/bandejas-yeso" },
-        { name: "Vaso de Yogurt con Tapa", href: "/catalogo/vaso-yogurt-tapa" },
       ],
     },
     { name: "Sobre mí", href: "/sobre-nosotros", icon: <FiUser size={18} /> },
