@@ -8,12 +8,16 @@ import BannerPromo from "@/components/banner/BannerPromo";
 import { bandejasYeso } from "@/data/bandeja_yeso";
 import { carrusel_sin_tapa } from "@/data/carrusel_sin_tapa";
 import ScrollTopButton from "@/components/botton-scroll/ScrollTopButton";
+import { carrusel_con_tapa } from "@/data/carrusel_con_tapa";
+import { saumerios } from '../../../../data/porta-saumerios';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const dataMap: Record<string, any[]> = {
   velas: velas,
   "carrusel-sin-tapa": carrusel_sin_tapa,
+  "carrusel-con-tapa": carrusel_con_tapa,
   "bandejas-yeso": bandejasYeso,
+  "porta-saumerios" : saumerios,
   // etc...
 };
 

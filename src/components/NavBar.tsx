@@ -26,9 +26,11 @@ export default function Navbar() {
       href: "/catalogo",
       icon: <FiBook size={18} />,
       sublinks: [
-        { name: "Velas", href: "/catalogo/velas" },
+        { name: "Velas", href: "/catalogo/velas" }, 
         { name: "Carrusel sin tapa", href: "/catalogo/carrusel-sin-tapa" },
+        { name: "Carrusel con tapa", href: "/catalogo/carrusel-con-tapa" },
         { name: "Bandejas de Yeso", href: "/catalogo/bandejas-yeso" },
+        { name: "Porta Saumerios", href: "/catalogo/porta-saumerios" },
       ],
     },
     { name: "Sobre mí", href: "/sobre-nosotros", icon: <FiUser size={18} /> },

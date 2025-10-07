@@ -21,7 +21,7 @@ export default function VelaCard({
 }: VelaCardProps) {
   return (
     <div className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition transform hover:-translate-y-1 w-full max-w-sm mx-auto">
-      
+
       {/* Slider de imágenes */}
       <div className="relative w-full h-72 sm:h-80 md:h-96">
         <Swiper
@@ -53,8 +53,12 @@ export default function VelaCard({
         <p className="text-lg font-bold text-[#B886A3] mt-2">{precio}</p>
 
         <a
-          href={`https://wa.me/${telefono}?text=Hola!%20Quiero%20más%20info%20sobre%20${encodeURIComponent(
-            nombre
+          href={`https://wa.me/${telefono}?text=${encodeURIComponent(
+            `¡Hola Yani! Quiero más información sobre esta vela:\n\n` +
+            `Nombre: ${nombre}\n` +
+            `Descripción: ${descripcion}\n` +
+            `Precio: ${precio}\n\n` +
+            `¿Podrías darme más detalles, por favor?`
           )}`}
           target="_blank"
           rel="noopener noreferrer"
@@ -63,6 +67,7 @@ export default function VelaCard({
           <FaWhatsapp className="w-5 h-5" />
           Pedir por WhatsApp
         </a>
+
       </div>
     </div>
   );
