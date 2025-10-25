@@ -7,31 +7,32 @@ import { motion } from "framer-motion";
 import { FiHeart, FiWind, FiSmile } from "react-icons/fi";
 import { FaLeaf, FaBolt, FaHome, FaPeace } from "react-icons/fa";
 
+
 export default function HomePage() {
   const slides = [
     {
       img: "/velas_5.jpg",
       title: "Relajación Profunda",
       text: "Aromas que calman la mente y liberan tensiones.",
-      icon: <FaLeaf size={60} className="mb-4 text-white drop-shadow-lg" />,
+      icon: <FaLeaf size={60} className="text-white drop-shadow-lg" />,
     },
     {
       img: "/velas_3.jpg",
       title: "Energía Positiva",
       text: "Fragancias que revitalizan tu interior.",
-      icon: <FaBolt size={60} className="mb-4 text-white drop-shadow-lg" />,
+      icon: <FaBolt size={60} className="text-white drop-shadow-lg" />,
     },
     {
       img: "/carrusel_1.jpg",
       title: "Ambiente Acogedor",
       text: "Transformá tu espacio en tu lugar favorito.",
-      icon: <FaHome size={60} className="mb-4 text-white drop-shadow-lg" />,
+      icon: <FaHome size={60} className="text-white drop-shadow-lg" />,
     },
     {
       img: "/carrusel_2.jpg",
       title: "Bienestar Emocional",
       text: "Más paz, más armonía, más luz ✨",
-      icon: <FaPeace size={60} className="mb-4 text-white drop-shadow-lg" />,
+      icon: <FaPeace size={60} className="text-white drop-shadow-lg" />,
     },
   ];
 
@@ -41,12 +42,11 @@ export default function HomePage() {
       <section id="slider" className="fade-in-fwd mt-20">
         <Swiper
           modules={[Navigation, Pagination, Autoplay]}
-          spaceBetween={0}
-          slidesPerView={1}
           loop
-          pagination={{ clickable: true }}
           navigation
+          pagination={{ clickable: true }}
           autoplay={{ delay: 4000 }}
+          slidesPerView={1}
           className="w-full h-[420px] md:h-[520px]"
         >
           {slides.map((slide, i) => (
@@ -56,26 +56,36 @@ export default function HomePage() {
                   src={slide.img}
                   alt={slide.title}
                   fill
-                  className="object-cover"
                   priority
+                  className="object-cover"
                 />
 
                 {/* Overlay */}
                 <div className="absolute inset-0 bg-black/45" />
 
-                {/* Texto dentro */}
-                <div className="absolute inset-0 flex flex-col items-center justify-center text-center 
-                text-white px-4">
+                {/* Contenido del slide */}
+                <div className="
+                  absolute inset-0 
+                  flex flex-col items-center justify-center 
+                  text-center text-white px-4
+                  pt-10 sm:pt-0
+                ">
                   <motion.div
                     initial={{ opacity: 0, scale: 0.8 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.8 }}
+                    className="flex flex-col items-center"
                   >
-                    {slide.icon}
-                    <h3 className="text-3xl md:text-5xl font-extrabold mb-3 drop-shadow-xl">
+                    {/* ✅ Icono centrado SIEMPRE */}
+                    <div className="mb-4">
+                      {slide.icon}
+                    </div>
+
+                    <h3 className="text-2xl sm:text-4xl md:text-5xl font-extrabold mb-2 drop-shadow-xl">
                       {slide.title}
                     </h3>
-                    <p className="text-lg md:text-2xl opacity-95 drop-shadow-md">
+
+                    <p className="text-sm sm:text-lg md:text-2xl drop-shadow-md opacity-95 max-w-[90%] mx-auto">
                       {slide.text}
                     </p>
                   </motion.div>
@@ -100,27 +110,35 @@ export default function HomePage() {
           <div className="p-6 bg-white rounded-xl shadow-md hover:shadow-xl transition hover:-translate-y-1">
             <FiHeart size={48} className="text-[#B886A3] mx-auto mb-3" />
             <h3 className="text-lg font-semibold">Artesanales</h3>
-            <p className="text-sm opacity-80 mt-2">Hechas a mano con amor.</p>
+            <p className="text-sm opacity-80 mt-2">
+              Hechas a mano con amor y dedicación.
+            </p>
           </div>
 
           <div className="p-6 bg-white rounded-xl shadow-md hover:shadow-xl transition hover:-translate-y-1">
             <FiWind size={48} className="text-[#B886A3] mx-auto mb-3" />
             <h3 className="text-lg font-semibold">Aromas únicos</h3>
-            <p className="text-sm opacity-80 mt-2">Fragancias para cada momento.</p>
+            <p className="text-sm opacity-80 mt-2">
+              Fragancias seleccionadas para cada momento especial.
+            </p>
           </div>
 
           <div className="p-6 bg-white rounded-xl shadow-md hover:shadow-xl transition hover:-translate-y-1">
             <FiSmile size={48} className="text-[#B886A3] mx-auto mb-3" />
             <h3 className="text-lg font-semibold">Bienestar</h3>
-            <p className="text-sm opacity-80 mt-2">Más calma en tu hogar.</p>
+            <p className="text-sm opacity-80 mt-2">
+              Diseñadas para traer paz y armonía.
+            </p>
           </div>
         </div>
 
-        {/* 🔥 CTA */}
+        {/* CTA */}
         <Link
           href="/catalogo"
-          className="inline-block bg-[#B886A3] text-white px-8 py-3 rounded-full 
-          font-bold text-lg hover:bg-[#9c7090] shadow-md hover:shadow-lg transition"
+          className="
+            inline-block bg-[#B886A3] text-white px-8 py-3 rounded-full 
+            font-bold text-lg hover:bg-[#9c7090] shadow-md hover:shadow-lg transition
+          "
         >
           Ver Catálogo 🛍️
         </Link>
@@ -132,21 +150,15 @@ export default function HomePage() {
           Seguinos en redes ✨
         </h3>
 
-        <div className="flex justify-center gap-6">
-          {/* Instagram */}
+        <div className="flex justify-center">
           <Link
             href="https://www.instagram.com/velas.luzserena"
             target="_blank"
-            className="flex items-center gap-2 text-[#E1306C] font-semibold
-            hover:scale-110 transition"
+            className="flex items-center gap-2 text-[#E1306C] font-semibold hover:scale-110 transition"
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="32" height="32"
-              fill="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 4.25 0 0 0 7.75 20.5h8.5A4.25 4.25 0 0 0 20.5 16.25v-8.5A4.25 4.25 0 0 0 16.25 3.5h-8.5zm4.25 3a5.25 5.25 0 1 1-5.25 5.25A5.26 5.26 0 0 1 12 6.5zm5.25-.88a1.12 1.12 0 1 1-1.12 1.12a1.12 1.12 0 0 1 1.12-1.12z"/>
+            {/* Logo Instagram Oficial */}
+            <svg width="34" height="34" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M7.75 2h8.5A5.75 5.75 0 0 1 22..." />
             </svg>
             @velas.luzserena
           </Link>
