@@ -48,7 +48,7 @@ export default function Navbar() {
     <nav className="fixed top-0 w-full bg-[#B886A3] text-[#F7F3ED] shadow-lg z-50">
       <div className="max-w-6xl mx-auto flex items-center justify-between p-4">
 
-        {/* Logo */}
+        {/* ✅ Logo */}
         <Link href="/" className="flex items-center gap-3">
           <Image
             src="/logo_vela.png"
@@ -61,7 +61,7 @@ export default function Navbar() {
           <h1 className="text-2xl font-bold hidden sm:inline-block tracking-tight">Luz Serena</h1>
         </Link>
 
-        {/* Carrito Mobile */}
+        {/* ✅ Carrito Mobile */}
         <Link href="/carrito" className="md:hidden relative mr-3">
           <FiShoppingCart size={24} />
           {totalItems > 0 && (
@@ -71,50 +71,56 @@ export default function Navbar() {
           )}
         </Link>
 
-        {/* Botón Mobile */}
+        {/* ✅ Menú Mobile Button */}
         <button className="md:hidden" onClick={() => setOpen(true)}>
           <FiMenu size={28} />
         </button>
 
-        {/* Menu Desktop */}
+        {/* ✅ Menú Desktop */}
         <div className="hidden md:flex gap-10 text-lg font-semibold items-center">
-          {links.map((link) => (
-            <div
-              key={link.name}
-              className="relative"
-              onMouseEnter={() => setHoveredDropdownDesktop(link.name)}
-              onMouseLeave={() => setHoveredDropdownDesktop(null)}
-            >
-              <Link href={link.href} className="flex items-center gap-1">
-                {link.icon}
-                <span className={pathname === link.href ? "font-bold underline" : ""}>
-                  {link.name}
-                </span>
-                {link.sublinks && (<FiChevronDown size={12} />)}
-              </Link>
+          {links.map((link) => {
+            const isActive = pathname === link.href;
+            const hasSublinks = !!link.sublinks;
 
-              {/* Dropdown Desktop */}
-              {link.sublinks && (
-                <ul
-                  className={`absolute left-0 mt-2 bg-[#B886A3] w-56 shadow-lg rounded-lg transition-all duration-300 
-                  ${hoveredDropdownDesktop === link.name ? "opacity-100 visible" : "opacity-0 invisible"}`}
-                >
-                  {link.sublinks.map((sublink) => (
-                    <li key={sublink.href}>
-                      <Link
-                        href={sublink.href}
-                        className="block px-4 py-2 hover:bg-[#A87493] transition"
-                      >
-                        {sublink.name}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              )}
-            </div>
-          ))}
+            return (
+              <div
+                key={link.name}
+                className="relative"
+                onMouseEnter={() => hasSublinks && setHoveredDropdownDesktop(link.name)}
+                onMouseLeave={() => hasSublinks && setHoveredDropdownDesktop(null)}
+              >
+                <Link href={link.href} className="flex items-center gap-1 hover:opacity-80">
+                  {link.icon}
+                  <span className={isActive ? "font-bold underline" : ""}>
+                    {link.name}
+                  </span>
+                  {hasSublinks && <FiChevronDown size={12} />}
+                </Link>
 
-          {/* Carrito Desktop */}
+                {hasSublinks && (
+                  <ul
+                    className={`absolute left-0 mt-2 bg-[#B886A3] w-56 shadow-lg rounded-lg transition-all duration-300 
+                    ${hoveredDropdownDesktop === link.name 
+                      ? "opacity-100 visible translate-y-0" 
+                      : "opacity-0 invisible -translate-y-2"}`}
+                  >
+                    {link.sublinks.map((sublink) => (
+                      <li key={sublink.href}>
+                        <Link
+                          href={sublink.href}
+                          className="block px-4 py-2 hover:bg-[#A87493] transition"
+                        >
+                          {sublink.name}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+            );
+          })}
+
+          {/* ✅ Carrito Desktop */}
           <Link href="/carrito" className="relative">
             <FiShoppingCart size={26} />
             {totalItems > 0 && (
@@ -126,7 +132,7 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Menu Mobile */}
+      {/* ✅ Menú Mobile Animado */}
       <div
         className={`fixed top-0 right-0 h-full w-3/4 max-w-[280px] bg-[#B886A3] pt-6 shadow-xl z-50
         transition-all duration-500 ease-[cubic-bezier(.25,.8,.25,1)]
@@ -137,60 +143,82 @@ export default function Navbar() {
         </button>
 
         <nav className="flex flex-col mt-10 gap-6 px-6 text-lg font-semibold">
-          {links.map((link) => (
-            <div key={link.name}>
-              <button
-                className="flex justify-between items-center w-full"
-                onClick={() =>
-                  setOpenDropdownMobile(
-                    openDropdownMobile === link.name ? null : link.name
-                  )
-                }
-              >
-                <span className="flex items-center gap-2">
-                  {link.icon}
-                  {link.name}
-                </span>
-                {link.sublinks && (
-                  <FiChevronDown
-                    className={`${openDropdownMobile === link.name ? "rotate-180" : ""} transition`}
-                  />
+          {links.map((link) => {
+            const hasSublinks = !!link.sublinks;
+
+            return (
+              <div key={link.name}>
+                {hasSublinks ? (
+                  <>
+                    <button
+                      className="flex justify-between items-center w-full"
+                      onClick={() =>
+                        setOpenDropdownMobile(
+                          openDropdownMobile === link.name ? null : link.name
+                        )
+                      }
+                    >
+                      <span className="flex items-center gap-2">
+                        {link.icon}
+                        {link.name}
+                      </span>
+                      <FiChevronDown
+                        className={`transition ${
+                          openDropdownMobile === link.name ? "rotate-180" : ""
+                        }`}
+                      />
+                    </button>
+
+                    <ul
+                      className={`pl-8 flex flex-col gap-2 mt-2 text-base transition-all duration-500 ease-out
+                      ${
+                        openDropdownMobile === link.name
+                          ? "max-h-[400px] opacity-100 translate-y-0"
+                          : "max-h-0 opacity-0 -translate-y-3 overflow-hidden"
+                      }`}
+                    >
+                      {link.sublinks.map((sub) => (
+                        <li key={sub.href}>
+                          <Link
+                            href={sub.href}
+                            onClick={() => setOpen(false)}
+                            className="flex gap-2 items-center"
+                          >
+                            <FiChevronRight size={14} />
+                            {sub.name}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </>
+                ) : (
+                  // ✅ Estos ya funcionan perfecto
+                  <Link
+                    href={link.href}
+                    onClick={() => setOpen(false)}
+                    className="flex items-center gap-2"
+                  >
+                    {link.icon}
+                    {link.name}
+                  </Link>
                 )}
-              </button>
+              </div>
+            );
+          })}
 
-              {link.sublinks && (
-                <ul
-                  className={`pl-8 flex flex-col gap-2 mt-2 text-base transition-all duration-500 ease-out
-                  ${openDropdownMobile === link.name
-                    ? "max-h-[400px] opacity-100 translate-y-0"
-                    : "max-h-0 opacity-0 -translate-y-3 overflow-hidden"}`}
-                >
-                  {link.sublinks.map((sub) => (
-                    <li key={sub.href}>
-                      <Link
-                        href={sub.href}
-                        onClick={() => setOpen(false)}
-                        className="flex gap-2 items-center"
-                      >
-                        <FiChevronRight size={14} />
-                        {sub.name}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              )}
-            </div>
-          ))}
-
-          {/* Carrito Mobile */}
-          <Link href="/carrito" onClick={() => setOpen(false)} className="flex items-center gap-2">
+          {/* ✅ Carrito Mobile */}
+          <Link
+            href="/carrito"
+            onClick={() => setOpen(false)}
+            className="flex items-center gap-2"
+          >
             <FiShoppingCart size={22} />
             Carrito ({totalItems})
           </Link>
         </nav>
       </div>
 
-      {/* Fondo oscuro */}
+      {/* ✅ Overlay */}
       {open && (
         <div
           className="fixed inset-0 bg-black/40 backdrop-blur-sm z-40 transition-opacity duration-500"
