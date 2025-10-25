@@ -3,79 +3,79 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion"; 
+import { motion } from "framer-motion";
 import { FiHeart, FiWind, FiSmile } from "react-icons/fi";
 import { FaLeaf, FaBolt, FaHome, FaPeace } from "react-icons/fa";
 
 export default function HomePage() {
-  // Array de slides con beneficios + íconos
-  const v = [
+  const slides = [
     {
       img: "/velas_5.jpg",
       title: "Relajación Profunda",
-      text: "Aromas suaves que calman la mente y reducen el estrés.",
-      icon: <FaLeaf size={60} className="mb-4 text-white drop-shadow-md" />,
+      text: "Aromas que calman la mente y liberan tensiones.",
+      icon: <FaLeaf size={60} className="mb-4 text-white drop-shadow-lg" />,
     },
     {
       img: "/velas_3.jpg",
       title: "Energía Positiva",
-      text: "Fragancias cítricas que revitalizan y elevan tu ánimo.",
-      icon: <FaBolt size={60} className="mb-4 text-white drop-shadow-md" />,
+      text: "Fragancias que revitalizan tu interior.",
+      icon: <FaBolt size={60} className="mb-4 text-white drop-shadow-lg" />,
     },
     {
       img: "/carrusel_1.jpg",
       title: "Ambiente Acogedor",
-      text: "Crea espacios cálidos y llenos de armonía en tu hogar.",
-      icon: <FaHome size={60} className="mb-4 text-white drop-shadow-md" />,
+      text: "Transformá tu espacio en tu lugar favorito.",
+      icon: <FaHome size={60} className="mb-4 text-white drop-shadow-lg" />,
     },
     {
       img: "/carrusel_2.jpg",
       title: "Bienestar Emocional",
-      text: "Transforma cada rincón en un santuario de paz.",
-      icon: <FaPeace size={60} className="mb-4 text-white drop-shadow-md" />,
+      text: "Más paz, más armonía, más luz ✨",
+      icon: <FaPeace size={60} className="mb-4 text-white drop-shadow-lg" />,
     },
   ];
 
   return (
     <>
-      {/* SLIDER */}
+      {/* 🎞️ SLIDER */}
       <section id="slider" className="fade-in-fwd mt-20">
         <Swiper
           modules={[Navigation, Pagination, Autoplay]}
           spaceBetween={0}
           slidesPerView={1}
-          loop={true}
+          loop
           pagination={{ clickable: true }}
           navigation
           autoplay={{ delay: 4000 }}
-          className="w-full bg-cover h-[500px] md:h-[500px]"
+          className="w-full h-[420px] md:h-[520px]"
         >
-          {v.map((slide, i) => (
+          {slides.map((slide, i) => (
             <SwiperSlide key={i}>
               <div className="relative w-full h-full">
                 <Image
                   src={slide.img}
                   alt={slide.title}
                   fill
-                  priority
                   className="object-cover"
+                  priority
                 />
-                {/* Overlay oscuro */}
-                <div className="absolute inset-0 bg-black/40"></div>
-                {/* Texto dentro de la imagen */}
-                <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-white px-4">
-                  {/* Animación con framer-motion */}
+
+                {/* Overlay */}
+                <div className="absolute inset-0 bg-black/45" />
+
+                {/* Texto dentro */}
+                <div className="absolute inset-0 flex flex-col items-center justify-center text-center 
+                text-white px-4">
                   <motion.div
                     initial={{ opacity: 0, scale: 0.8 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.8 }}
-                    className="flex flex-col items-center"
                   >
                     {slide.icon}
-                    <h3 className="text-3xl md:text-5xl font-bold mb-4 drop-shadow-lg">
+                    <h3 className="text-3xl md:text-5xl font-extrabold mb-3 drop-shadow-xl">
                       {slide.title}
                     </h3>
-                    <p className="text-lg md:text-2xl drop-shadow-md">
+                    <p className="text-lg md:text-2xl opacity-95 drop-shadow-md">
                       {slide.text}
                     </p>
                   </motion.div>
@@ -86,52 +86,71 @@ export default function HomePage() {
         </Swiper>
       </section>
 
-      {/* SECCIÓN INFO */}
+      {/* 🌸 SECCIÓN INFO */}
       <section className="bg-[#F7F3ED] text-[#8A5F79] py-16 px-6 md:px-12 text-center">
         <h2 className="text-3xl md:text-4xl font-bold mb-6">
           El poder de las velas artesanales
         </h2>
-        <p className="max-w-3xl mx-auto text-lg md:text-xl mb-10">
-          Nuestras velas no solo iluminan tu espacio, sino que también aportan
-          armonía, energía positiva y bienestar emocional. Cada fragancia ha sido
-          cuidadosamente seleccionada para transformar tu ambiente en un santuario
-          de paz y calidez.
+        <p className="max-w-3xl mx-auto text-lg md:text-xl mb-14 opacity-90">
+          Velas diseñadas para crear ambientes cálidos, llenos de armonía y bienestar.
         </p>
 
-        {/* Features con iconos */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto mb-12">
-          <div className="flex flex-col items-center">
-            <FiHeart size={48} className="text-[#B886A3] mb-4" />
-            <h3 className="text-xl font-semibold mb-2">Artesanales</h3>
-            <p className="text-md">
-              Cada vela es hecha a mano con amor y dedicación.
-            </p>
+        {/* 🌟 Features */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-5xl mx-auto mb-14">
+          <div className="p-6 bg-white rounded-xl shadow-md hover:shadow-xl transition hover:-translate-y-1">
+            <FiHeart size={48} className="text-[#B886A3] mx-auto mb-3" />
+            <h3 className="text-lg font-semibold">Artesanales</h3>
+            <p className="text-sm opacity-80 mt-2">Hechas a mano con amor.</p>
           </div>
 
-          <div className="flex flex-col items-center">
-            <FiWind size={48} className="text-[#B886A3] mb-4" />
-            <h3 className="text-xl font-semibold mb-2">Aromas únicos</h3>
-            <p className="text-md">
-              Fragancias seleccionadas para cada momento especial.
-            </p>
+          <div className="p-6 bg-white rounded-xl shadow-md hover:shadow-xl transition hover:-translate-y-1">
+            <FiWind size={48} className="text-[#B886A3] mx-auto mb-3" />
+            <h3 className="text-lg font-semibold">Aromas únicos</h3>
+            <p className="text-sm opacity-80 mt-2">Fragancias para cada momento.</p>
           </div>
 
-          <div className="flex flex-col items-center">
-            <FiSmile size={48} className="text-[#B886A3] mb-4" />
-            <h3 className="text-xl font-semibold mb-2">Bienestar</h3>
-            <p className="text-md">
-              Diseñadas para crear ambientes relajantes y positivos.
-            </p>
+          <div className="p-6 bg-white rounded-xl shadow-md hover:shadow-xl transition hover:-translate-y-1">
+            <FiSmile size={48} className="text-[#B886A3] mx-auto mb-3" />
+            <h3 className="text-lg font-semibold">Bienestar</h3>
+            <p className="text-sm opacity-80 mt-2">Más calma en tu hogar.</p>
           </div>
         </div>
 
-        {/* Botón CTA */}
+        {/* 🔥 CTA */}
         <Link
           href="/catalogo"
-          className="inline-block bg-[#B886A3] text-[#F7F3ED] px-8 py-3 rounded-full font-bold text-lg hover:bg-[#9c7090] transition"
+          className="inline-block bg-[#B886A3] text-white px-8 py-3 rounded-full 
+          font-bold text-lg hover:bg-[#9c7090] shadow-md hover:shadow-lg transition"
         >
-          Ver Catálogo
+          Ver Catálogo 🛍️
         </Link>
+      </section>
+
+      {/* 📣 Redes Sociales */}
+      <section className="py-12 text-center">
+        <h3 className="text-lg font-semibold text-[#8A5F79] mb-4 opacity-90">
+          Seguinos en redes ✨
+        </h3>
+
+        <div className="flex justify-center gap-6">
+          {/* Instagram */}
+          <Link
+            href="https://www.instagram.com/velas.luzserena"
+            target="_blank"
+            className="flex items-center gap-2 text-[#E1306C] font-semibold
+            hover:scale-110 transition"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="32" height="32"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 4.25 0 0 0 7.75 20.5h8.5A4.25 4.25 0 0 0 20.5 16.25v-8.5A4.25 4.25 0 0 0 16.25 3.5h-8.5zm4.25 3a5.25 5.25 0 1 1-5.25 5.25A5.26 5.26 0 0 1 12 6.5zm5.25-.88a1.12 1.12 0 1 1-1.12 1.12a1.12 1.12 0 0 1 1.12-1.12z"/>
+            </svg>
+            @velas.luzserena
+          </Link>
+        </div>
       </section>
     </>
   );

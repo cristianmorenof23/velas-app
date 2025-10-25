@@ -6,18 +6,7 @@ export interface BandejaYeso {
 }
 
 export const bandejasYeso: BandejaYeso[] = [
-  {
-    nombre: "Bandeja Yeso Floral",
-    descripcion: "Bandejas de yeso con diseño floral, ideales para decoración.",
-    precio: "$1500",
-    imagenes: ["/yeso_1.jpg", "/yeso_2.jpg", "/yeso_3.jpg"]
-  },
-  {
-    nombre: "Bandeja Yeso Floral",
-    descripcion: "Bandejas de yeso con diseño floral, ideales para decoración.",
-    precio: "$1500",
-    imagenes: ["/yeso_5.jpg", "/yeso_6.jpg", "/yeso_7.jpg", "/yeso_8.jpg", "/yeso_9.jpg"]
-  },
+
   {
     nombre: "Bandeja Yeso Floral",
     descripcion: "Bandejas de yeso con diseño floral, ideales para decoración.",
@@ -36,10 +25,18 @@ export const bandejasYeso: BandejaYeso[] = [
     precio: "$1500",
     imagenes: ["/plato_3.jpg", "/plato_4.jpg"]
   },
+
   {
-    nombre: "Bandeja Yeso",
-    descripcion: "Bandejas de yeso, ideales para decoración.",
+    nombre: "Cuencos de Yeso Decorativos",
+    descripcion: "Cuencos de yeso con detalles decorativos, ideales para velas o pequeños objetos.",
     precio: "$1500",
-    imagenes: ["/plato_5.jpg", "/plato_6.jpg", "/plato_7.jpg", "/plato_8.jpg", "/plato_9.jpg"]
+    imagenes: ["/saumerio_1.jpg", "/saumerio_2.jpg"]
   },
+  {
+    nombre: "Cuencos de Yeso Decorativos",
+    descripcion: "Cuencos de yeso con detalles decorativos, ideales para velas o pequeños objetos.",
+    precio: "$1500",
+    imagenes: ["/saumerio_3.jpg", "/saumerio_4.jpg"]
+  },
+
 ]

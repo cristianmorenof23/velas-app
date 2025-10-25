@@ -9,7 +9,8 @@ import { bandejasYeso } from "@/data/bandeja_yeso";
 import { carrusel_sin_tapa } from "@/data/carrusel_sin_tapa";
 import ScrollTopButton from "@/components/botton-scroll/ScrollTopButton";
 import { carrusel_con_tapa } from "@/data/carrusel_con_tapa";
-import { saumerios } from '../../../../data/porta-saumerios';
+import { saumerios } from "@/data/porta-saumerios";
+import { velas_bandeja } from "@/data/velas-bandeja-yeso";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const dataMap: Record<string, any[]> = {
@@ -18,6 +19,7 @@ const dataMap: Record<string, any[]> = {
   "carrusel-con-tapa": carrusel_con_tapa,
   "bandejas-yeso": bandejasYeso,
   "porta-saumerios" : saumerios,
+  "velas-bandeja-yeso": velas_bandeja,
   // etc...
 };
 

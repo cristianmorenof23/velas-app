@@ -10,15 +10,9 @@ export interface Saumerio {
 export const saumerios: Saumerio[] = [
   {
     nombre: "Porta Saumerio de Yeso",
-    descripcion: "Diseño elegante para tus saumerios",
+    descripcion: "Porta saumerios de yeso con diseño elegante, ideal para sostener varitas de incienso.",
     precio: "$1500",
-    imagenes: ["/saumerio_1.jpg", "/saumerio_2.jpg"]
-  },
-  {
-    nombre: "Porta Saumerio de Yeso",
-    descripcion: "Diseño elegante para tus saumerios",
-    precio: "$1500",
-    imagenes: ["/saumerio_3.jpg", "/saumerio_4.jpg"]
+    imagenes: ["/plato_5.jpg", "/plato_6.jpg", "/plato_7.jpg", "/plato_8.jpg", "/plato_9.jpg"]
   },
 
 ]

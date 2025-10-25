@@ -29,12 +29,13 @@ export const useCartStore = create<CartStore>()(
         const exist = cart.find((i) => i.nombre === item.nombre);
 
         if (exist) {
-          exist.cantidad += 1;
+          exist.cantidad += item.cantidad; 
           set({ cart: [...cart] });
         } else {
-          set({ cart: [...cart, { ...item, cantidad: 1 }] });
+          set({ cart: [...cart, item] }); 
         }
       },
+
 
       removeFromCart: (nombre) => {
         set({

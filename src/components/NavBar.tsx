@@ -8,9 +8,7 @@ import {
   FiHome,
   FiBook,
   FiUser,
-  FiMail,
-  FiChevronRight,
-  FiShoppingCart,
+  FiMail, FiShoppingCart
 } from "react-icons/fi";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
@@ -18,6 +16,7 @@ import { useCartStore } from "@/store/cart.store";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [hoveredDropdown, setHoveredDropdown] = useState<string | null>(null);
   const pathname = usePathname();
@@ -35,6 +34,7 @@ export default function Navbar() {
         { name: "Carrusel con tapa", href: "/catalogo/carrusel-con-tapa" },
         { name: "Bandejas de Yeso", href: "/catalogo/bandejas-yeso" },
         { name: "Porta Saumerios", href: "/catalogo/porta-saumerios" },
+        { name: "Velas con Bandeja de Yeso", href: "/catalogo/velas-bandeja-yeso" },
       ],
     },
     { name: "Sobre mí", href: "/sobre-nosotros", icon: <FiUser size={18} /> },
@@ -44,20 +44,31 @@ export default function Navbar() {
   return (
     <nav className="fixed top-0 w-full bg-[#B886A3] text-[#F7F3ED] shadow-lg z-50">
       <div className="max-w-6xl mx-auto flex items-center justify-between p-4">
+
         {/* Logo */}
-        <Link
-          href="/"
-          className="flex items-center gap-2 hover:opacity-80 transition hover:scale-110"
-        >
+        <Link href="/" className="flex items-center gap-2">
           <Image
             src="/logo_vela.png"
             alt="Luz Serena"
-            width={100}
-            height={100}
+            width={70}
+            height={70}
             priority
             className="object-contain"
           />
-          <h1 className="text-2xl font-bold">Luz Serena</h1>
+          <h1 className="text-2xl font-bold hidden sm:inline-block">Luz Serena</h1>
+        </Link>
+
+        {/* --- CARRITO ARRIBA EN MOBILE ✅ --- */}
+        <Link
+          href="/carrito"
+          className="md:hidden relative mr-4"
+        >
+          <FiShoppingCart size={26} className="cursor-pointer" />
+          {totalItems > 0 && (
+            <span className="absolute -top-2 -right-2 bg-red-600 text-white text-xs font-bold px-1.5 py-0.5 rounded-full animate-pulse">
+              {totalItems}
+            </span>
+          )}
         </Link>
 
         {/* Menú Desktop */}
@@ -69,25 +80,21 @@ export default function Navbar() {
               onMouseEnter={() => setHoveredDropdown(link.name)}
               onMouseLeave={() => setHoveredDropdown(null)}
             >
-              <Link
-                href={link.href}
-                className="flex items-center gap-2 relative"
-              >
+              <Link href={link.href} className="flex items-center gap-2">
                 {link.icon}
                 <span
                   className={`transition-colors ${
-                    pathname === link.href
-                      ? "text-[#FFF]"
-                      : "hover:opacity-80"
+                    pathname === link.href ? "text-white" : "hover:opacity-80"
                   }`}
                 >
                   {link.name}
                 </span>
               </Link>
 
+              {/* Dropdown Desktop */}
               {link.sublinks && (
                 <div
-                  className={`absolute left-0 mt-2 bg-[#B886A3] shadow-lg rounded-lg z-50 overflow-hidden transition-all duration-300 ${
+                  className={`absolute left-0 mt-2 bg-[#B886A3] shadow-lg rounded-lg transition-all duration-300 ${
                     hoveredDropdown === link.name
                       ? "opacity-100 translate-y-0"
                       : "opacity-0 -translate-y-2 pointer-events-none"
@@ -98,7 +105,7 @@ export default function Navbar() {
                       <li key={sublink.href}>
                         <Link
                           href={sublink.href}
-                          className="block px-4 py-2 hover:bg-[#A87493] transition"
+                          className="block px-4 py-2 hover:bg-[#A87493]"
                         >
                           {sublink.name}
                         </Link>
@@ -110,14 +117,11 @@ export default function Navbar() {
             </div>
           ))}
 
-          {/* 🛒 Carrito Desktop */}
+          {/* Carrito Desktop */}
           <Link href="/carrito" className="relative">
-            <FiShoppingCart
-              size={28}
-              className="hover:scale-110 transition cursor-pointer"
-            />
+            <FiShoppingCart size={28} className="cursor-pointer" />
             {totalItems > 0 && (
-              <span className="absolute -top-2 -right-2 bg-red-600 text-white text-xs font-bold px-2 py-1 rounded-full">
+              <span className="absolute -top-2 -right-2 bg-red-600 text-white text-xs font-bold px-2 py-0.5 rounded-full animate-pulse">
                 {totalItems}
               </span>
             )}
@@ -125,11 +129,7 @@ export default function Navbar() {
         </div>
 
         {/* Botón Mobile */}
-        <button
-          className="md:hidden flex items-center gap-2 hover:scale-110 transition"
-          onClick={() => setOpen(true)}
-        >
-          <p className="font-semibold">Menu</p>
+        <button className="md:hidden" onClick={() => setOpen(true)}>
           <FiMenu size={28} />
         </button>
       </div>
@@ -141,80 +141,40 @@ export default function Navbar() {
         }`}
       >
         <div className="flex justify-end p-4">
-          <button
-            onClick={() => setOpen(false)}
-            className="hover:scale-110 transition"
-          >
+          <button onClick={() => setOpen(false)}>
             <FiX size={28} />
           </button>
         </div>
 
         <nav className="flex flex-col gap-6 px-6 mt-6 text-lg font-semibold">
           {links.map((link) => (
-            <div key={link.href}>
-              <div
-                className="flex items-center justify-between gap-2 cursor-pointer"
-                onClick={() =>
-                  link.sublinks
-                    ? setOpenDropdown(openDropdown === link.name ? null : link.name)
-                    : setOpen(false)
-                }
-              >
-                <Link href={link.href} className="flex items-center gap-2">
-                  {link.icon}
-                  {link.name}
-                </Link>
-                {link.sublinks && (
-                  <span>{openDropdown === link.name ? "-" : "+"}</span>
-                )}
-              </div>
-
-              {/* Sublinks Mobile */}
-              {link.sublinks && (
-                <div
-                  className={`ml-6 mt-2 flex flex-col gap-2 transition-all ${
-                    openDropdown === link.name
-                      ? "opacity-100 max-h-screen translate-y-0"
-                      : "opacity-0 max-h-0 -translate-y-2 overflow-hidden"
-                  }`}
-                >
-                  {link.sublinks.map((sublink) => (
-                    <Link
-                      key={sublink.href}
-                      href={sublink.href}
-                      onClick={() => setOpen(false)}
-                      className="text-md px-3 py-2 rounded-md flex items-center gap-2 hover:bg-[#A87493] transition"
-                    >
-                      <FiChevronRight size={14} />
-                      {sublink.name}
-                    </Link>
-                  ))}
-                </div>
-              )}
-            </div>
+            <Link
+              key={link.href}
+              href={link.href}
+              onClick={() => setOpen(false)}
+              className="flex items-center gap-2"
+            >
+              {link.icon}
+              {link.name}
+            </Link>
           ))}
 
-          {/* 🛒 Carrito Mobile */}
+          {/* Carrito también aquí (solo texto 😄) */}
           <Link
             href="/carrito"
             onClick={() => setOpen(false)}
-            className="flex items-center gap-3 mt-4 relative"
+            className="flex items-center gap-2"
           >
-            <FiShoppingCart size={26} />
-            Carrito
-            {totalItems > 0 && (
-              <span className="absolute left-20 bg-red-600 text-white text-xs font-bold px-2 py-1 rounded-full">
-                {totalItems}
-              </span>
-            )}
+            <FiShoppingCart size={22} />
+            Carrito ({totalItems})
           </Link>
         </nav>
       </div>
 
-      {/* Overlay */}
+      {/* Overlay fondo */}
       {open && (
         <div
-          className="fixed inset-0 bg-black bg-opacity-40 z-40"
+          className="fixed inset-0 bg-black/40 z-40"
           onClick={() => setOpen(false)}
         />
       )}

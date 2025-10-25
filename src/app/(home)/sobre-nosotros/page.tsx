@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import { GiCandleHolder } from "react-icons/gi";
 import { LuFlower2, LuSparkles } from "react-icons/lu";
 
@@ -73,6 +74,35 @@ export default function SobreMi() {
           </p>
         </div>
       </div>
+
+      {/* Redes sociales */}
+      <div className="mt-16 text-center">
+        <p className="text-lg text-gray-700 mb-3">
+          Seguí mis creaciones y novedades ✨
+        </p>
+
+        <div className="flex justify-center gap-6">
+          {/* Instagram */}
+          <Link
+            href="https://www.instagram.com/velas.luzserena" 
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 text-[#E1306C] hover:text-[#B82A59] transition-transform hover:scale-110"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="32"
+              height="32"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 4.25 0 0 0 7.75 20.5h8.5A4.25 4.25 0 0 0 20.5 16.25v-8.5A4.25 4.25 0 0 0 16.25 3.5h-8.5zm4.25 3a5.25 5.25 0 1 1-5.25 5.25A5.26 5.26 0 0 1 12 6.5zm0 1.5a3.75 3.75 0 1 0 3.75 3.75A3.75 3.75 0 0 0 12 8zm5.25-.88a1.12 1.12 0 1 1-1.12 1.12a1.12 1.12 0 0 1 1.12-1.12z" />
+            </svg>
+            <span className="font-semibold">@velas.luzserena</span>
+          </Link>
+        </div>
+      </div>
+
 
     </section>
   );
