@@ -1,4 +1,5 @@
 "use client";
+
 import { useState } from "react";
 import Link from "next/link";
 import {
@@ -9,15 +10,18 @@ import {
   FiUser,
   FiMail,
   FiChevronRight,
+  FiShoppingCart,
 } from "react-icons/fi";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
+import { useCartStore } from "@/store/cart.store";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [hoveredDropdown, setHoveredDropdown] = useState<string | null>(null);
   const pathname = usePathname();
+  const totalItems = useCartStore((state) => state.getTotalItems());
 
   const links = [
     { name: "Inicio", href: "/", icon: <FiHome size={18} /> },
@@ -26,7 +30,7 @@ export default function Navbar() {
       href: "/catalogo",
       icon: <FiBook size={18} />,
       sublinks: [
-        { name: "Velas", href: "/catalogo/velas" }, 
+        { name: "Velas", href: "/catalogo/velas" },
         { name: "Carrusel sin tapa", href: "/catalogo/carrusel-sin-tapa" },
         { name: "Carrusel con tapa", href: "/catalogo/carrusel-con-tapa" },
         { name: "Bandejas de Yeso", href: "/catalogo/bandejas-yeso" },
@@ -43,7 +47,7 @@ export default function Navbar() {
         {/* Logo */}
         <Link
           href="/"
-          className="flex items-center gap-2 hover:cursor-pointer hover:opacity-80 transition hover:scale-110"
+          className="flex items-center gap-2 hover:opacity-80 transition hover:scale-110"
         >
           <Image
             src="/logo_vela.png"
@@ -57,7 +61,7 @@ export default function Navbar() {
         </Link>
 
         {/* Menú Desktop */}
-        <div className="hidden md:flex gap-10 font-bold text-lg">
+        <div className="hidden md:flex gap-10 font-bold text-lg items-center">
           {links.map((link) => (
             <div
               key={link.href}
@@ -65,28 +69,25 @@ export default function Navbar() {
               onMouseEnter={() => setHoveredDropdown(link.name)}
               onMouseLeave={() => setHoveredDropdown(null)}
             >
-              <Link href={link.href} className="flex items-center gap-2 relative">
+              <Link
+                href={link.href}
+                className="flex items-center gap-2 relative"
+              >
                 {link.icon}
                 <span
                   className={`transition-colors ${
                     pathname === link.href
-                      ? "text-[#F7F3ED]"
+                      ? "text-[#FFF]"
                       : "hover:opacity-80"
                   }`}
                 >
                   {link.name}
                 </span>
-                <span
-                  className={`absolute left-0 -bottom-1 h-[2px] bg-[#F7F3ED] transition-all duration-300 ease-in-out ${
-                    pathname === link.href ? "w-full" : "w-0 hover:w-full"
-                  }`}
-                />
               </Link>
 
-              {/* Dropdown Desktop */}
               {link.sublinks && (
                 <div
-                  className={`absolute left-0 mt-2 bg-[#B886A3] shadow-lg rounded-lg z-50 overflow-hidden transform transition-all duration-300 ease-in-out ${
+                  className={`absolute left-0 mt-2 bg-[#B886A3] shadow-lg rounded-lg z-50 overflow-hidden transition-all duration-300 ${
                     hoveredDropdown === link.name
                       ? "opacity-100 translate-y-0"
                       : "opacity-0 -translate-y-2 pointer-events-none"
@@ -108,11 +109,24 @@ export default function Navbar() {
               )}
             </div>
           ))}
+
+          {/* 🛒 Carrito Desktop */}
+          <Link href="/carrito" className="relative">
+            <FiShoppingCart
+              size={28}
+              className="hover:scale-110 transition cursor-pointer"
+            />
+            {totalItems > 0 && (
+              <span className="absolute -top-2 -right-2 bg-red-600 text-white text-xs font-bold px-2 py-1 rounded-full">
+                {totalItems}
+              </span>
+            )}
+          </Link>
         </div>
 
         {/* Botón Mobile */}
         <button
-          className="md:hidden flex items-center gap-2 hover:cursor-pointer hover:opacity-80 transition hover:scale-110"
+          className="md:hidden flex items-center gap-2 hover:scale-110 transition"
           onClick={() => setOpen(true)}
         >
           <p className="font-semibold">Menu</p>
@@ -122,14 +136,14 @@ export default function Navbar() {
 
       {/* Menú Mobile */}
       <div
-        className={`fixed top-0 right-0 h-full w-3/4 max-w-xs bg-[#B886A3] text-[#F7F3ED] shadow-lg transform transition-transform duration-300 ease-in-out z-50 ${
+        className={`fixed top-0 right-0 h-full w-3/4 max-w-xs bg-[#B886A3] text-[#F7F3ED] shadow-lg transform transition-transform duration-300 z-50 ${
           open ? "translate-x-0" : "translate-x-full"
         }`}
       >
         <div className="flex justify-end p-4">
           <button
             onClick={() => setOpen(false)}
-            className="hover:cursor-pointer hover:opacity-80 transition hover:scale-110"
+            className="hover:scale-110 transition"
           >
             <FiX size={28} />
           </button>
@@ -158,7 +172,7 @@ export default function Navbar() {
               {/* Sublinks Mobile */}
               {link.sublinks && (
                 <div
-                  className={`ml-6 mt-2 flex flex-col gap-2 transform transition-all duration-300 ease-in-out ${
+                  className={`ml-6 mt-2 flex flex-col gap-2 transition-all ${
                     openDropdown === link.name
                       ? "opacity-100 max-h-screen translate-y-0"
                       : "opacity-0 max-h-0 -translate-y-2 overflow-hidden"
@@ -169,11 +183,7 @@ export default function Navbar() {
                       key={sublink.href}
                       href={sublink.href}
                       onClick={() => setOpen(false)}
-                      className={`text-md px-3 py-2 rounded-md flex items-center gap-2 transition ${
-                        pathname === sublink.href
-                          ? "bg-[#A87493]"
-                          : "hover:bg-[#A87493]"
-                      }`}
+                      className="text-md px-3 py-2 rounded-md flex items-center gap-2 hover:bg-[#A87493] transition"
                     >
                       <FiChevronRight size={14} />
                       {sublink.name}
@@ -183,6 +193,21 @@ export default function Navbar() {
               )}
             </div>
           ))}
+
+          {/* 🛒 Carrito Mobile */}
+          <Link
+            href="/carrito"
+            onClick={() => setOpen(false)}
+            className="flex items-center gap-3 mt-4 relative"
+          >
+            <FiShoppingCart size={26} />
+            Carrito
+            {totalItems > 0 && (
+              <span className="absolute left-20 bg-red-600 text-white text-xs font-bold px-2 py-1 rounded-full">
+                {totalItems}
+              </span>
+            )}
+          </Link>
         </nav>
       </div>
 
