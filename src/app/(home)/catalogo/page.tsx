@@ -8,6 +8,7 @@ export default function Catalogo() {
   const [showButton, setShowButton] = useState(false);
 
   // contador dinámico (promo)
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [timeLeft, setTimeLeft] = useState("");
 
   useEffect(() => {
@@ -65,18 +66,7 @@ export default function Catalogo() {
 
       </section>
 
-      {/* BANNER PROMO con contador */}
-      <section className="bg-[#8A5F79] text-white py-8 px-6 text-center">
-        <div className="max-w-5xl mx-auto">
-          <h2 className="text-2xl md:text-3xl font-bold mb-2">
-            🌟 Promo Especial de Este Mes 🌟
-          </h2>
-          <p className="text-lg mb-1">
-            Llevá 3 velas y obtené un 10% de descuento en tu compra ✨
-          </p>
-          <p className="text-md font-semibold">{timeLeft}</p>
-        </div>
-      </section>
+
 
       {/* CATÁLOGO */}
       <section className="max-w-7xl mx-auto px-4 py-10 mt-10 fade-in-fwd">
