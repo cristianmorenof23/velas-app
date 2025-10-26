@@ -18,4 +18,28 @@ export const carrusel_con_tapa: CarruselConTapa[] = [
     precio: "$1500",
     imagenes: ["/vela_4.jpg", "/vela_5.jpg"]
   },
+    {
+    nombre: "Vela Carrusel con Tapa",
+    descripcion: "Aromas suaves para relajarte",
+    precio: "$1500",
+    imagenes: ["/carru_10.jpg", "/carru_11.jpg"]
+  },
+      {
+    nombre: "Vela Carrusel con Tapa",
+    descripcion: "Aromas suaves para relajarte",
+    precio: "$1500",
+    imagenes: ["/carru_12.jpg", "/carru_13.jpg"]
+  },
+      {
+    nombre: "Vela Carrusel con Tapa",
+    descripcion: "Aromas suaves para relajarte",
+    precio: "$1500",
+    imagenes: ["/carru_14.jpg", "/carru_15.jpg"]
+  },
+      {
+    nombre: "Vela Carrusel con Tapa",
+    descripcion: "Aromas suaves para relajarte",
+    precio: "$1500",
+    imagenes: ["/carru_16.jpg", "/carru_17.jpg"]
+  },
 ]

@@ -15,6 +15,12 @@ export const velas: Vela[] = [
   },
 
   {
+    nombre: "Vela con forma de flor",
+    descripcion: "Aromas suaves para relajarte",
+    precio: "$1500",
+    imagenes: ["/vela_60.jpg", "/vela_61.jpg"]
+  },
+  {
     nombre: "Vela en Frasco",
     descripcion: "Aromas suaves para relajarte",
     precio: "$1500",
@@ -60,13 +66,7 @@ export const velas: Vela[] = [
     nombre: "Vela con forma de Rosa",
     descripcion: "Aromas suaves para relajarte",
     precio: "$1500",
-    imagenes: ["/vela_21.jpg", "/vela_22.jpg"]
-  },
-  {
-    nombre: "Vela con forma de Rosa",
-    descripcion: "Aromas suaves para relajarte",
-    precio: "$1500",
-    imagenes: ["/vela_26.jpg", "/vela_27.jpg", "/vela_28.jpg", "/vela_29.jpg"]
+    imagenes: ["/vela_21.jpg", "/vela_22.jpg", "/vela_26.jpg", "/vela_27.jpg", "/vela_28.jpg", "/vela_29.jpg"]
   },
   {
     nombre: "Vela Relax",

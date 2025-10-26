@@ -14,7 +14,12 @@ export const saumerios: Saumerio[] = [
     precio: "$1500",
     imagenes: ["/plato_5.jpg", "/plato_6.jpg", "/plato_7.jpg", "/plato_8.jpg", "/plato_9.jpg"]
   },
-
+  {
+    nombre: "Bandeja de Yeso Doradas y Plateadas",
+    descripcion: "Bandejas de yeso pintadas en dorado y plateado, perfectas para ocasiones especiales.",
+    precio: "$1500",
+    imagenes: ["/yeso_15.jpg", "/yeso_17.jpg", "/yeso_18.jpg"]
+  },
 
 
 ]
