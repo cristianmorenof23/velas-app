@@ -39,6 +39,7 @@ export default function Navbar() {
         { name: "Porta Saumerios", href: "/catalogo/porta-saumerios" },
         { name: "Velas con Bandeja de Yeso", href: "/catalogo/velas-bandeja-yeso" },
         { name: "Alhajero de Yeso", href: "/catalogo/alhajero-yeso" },
+        { name: "Piezas de Yeso", href: "/catalogo/piezas-yeso" },
       ],
     },
     { name: "Sobre mí", href: "/sobre-nosotros", icon: <FiUser size={18} /> },

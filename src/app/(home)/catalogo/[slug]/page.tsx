@@ -11,6 +11,7 @@ import { carrusel_con_tapa } from "@/data/carrusel_con_tapa";
 import { saumerios } from "@/data/porta-saumerios";
 import { velas_bandeja } from "@/data/velas-bandeja-yeso";
 import { alhajero_yeso } from "@/data/alhajeros-yeso";
+import { piezas_yeso } from "@/data/pieza-yeso";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const dataMap: Record<string, any[]> = {
@@ -21,6 +22,7 @@ const dataMap: Record<string, any[]> = {
   "porta-saumerios": saumerios,
   "velas-bandeja-yeso": velas_bandeja,
   "alhajero-yeso": alhajero_yeso,
+  "piezas-yeso": piezas_yeso,
   // etc...
 };
 
