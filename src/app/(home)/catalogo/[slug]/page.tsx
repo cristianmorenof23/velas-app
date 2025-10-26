@@ -4,13 +4,13 @@ import VelaCard from "@/components/VelasCard";
 
 // importa tus arrays
 import { velas } from "@/data/velas";
-import BannerPromo from "@/components/banner/BannerPromo";
 import { bandejasYeso } from "@/data/bandeja_yeso";
 import { carrusel_sin_tapa } from "@/data/carrusel_sin_tapa";
 import ScrollTopButton from "@/components/botton-scroll/ScrollTopButton";
 import { carrusel_con_tapa } from "@/data/carrusel_con_tapa";
 import { saumerios } from "@/data/porta-saumerios";
 import { velas_bandeja } from "@/data/velas-bandeja-yeso";
+import { alhajero_yeso } from "@/data/alhajeros-yeso";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const dataMap: Record<string, any[]> = {
@@ -18,8 +18,9 @@ const dataMap: Record<string, any[]> = {
   "carrusel-sin-tapa": carrusel_sin_tapa,
   "carrusel-con-tapa": carrusel_con_tapa,
   "bandejas-yeso": bandejasYeso,
-  "porta-saumerios" : saumerios,
+  "porta-saumerios": saumerios,
   "velas-bandeja-yeso": velas_bandeja,
+  "alhajero-yeso": alhajero_yeso,
   // etc...
 };
 
@@ -41,15 +42,19 @@ export default function CatalogoSlugPage() {
 
   return (
     <>
-      {/* 🔥 Banner Promo arriba del catálogo */}
-      <BannerPromo />
       <ScrollTopButton />
 
 
-      <section className="max-w-7xl mx-auto px-4 py-10 mt-10 fade-in-fwd">
-        <h2 className="text-3xl font-bold text-center mb-10 text-[#8A5F79] capitalize">
+      <section className="max-w-7xl mx-auto px-4 py-10 mt-20 fade-in-fwd">
+        <h2 className="text-3xl font-bold text-center mb-3 text-[#8A5F79] capitalize">
           {slug.replaceAll("-", " ")}
         </h2>
+
+        {slug === "carrusel-sin-tapa" && (
+          <p className="text-center text-xl text-gray-600 mb-6">
+            Diseños varios 🌸✨
+          </p>
+        )}
 
         <div
           className="

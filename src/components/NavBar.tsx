@@ -38,6 +38,7 @@ export default function Navbar() {
         { name: "Bandejas de Yeso", href: "/catalogo/bandejas-yeso" },
         { name: "Porta Saumerios", href: "/catalogo/porta-saumerios" },
         { name: "Velas con Bandeja de Yeso", href: "/catalogo/velas-bandeja-yeso" },
+        { name: "Alhajero de Yeso", href: "/catalogo/alhajero-yeso" },
       ],
     },
     { name: "Sobre mí", href: "/sobre-nosotros", icon: <FiUser size={18} /> },
@@ -100,9 +101,9 @@ export default function Navbar() {
                 {hasSublinks && (
                   <ul
                     className={`absolute left-0 mt-2 bg-[#B886A3] w-56 shadow-lg rounded-lg transition-all duration-300 
-                    ${hoveredDropdownDesktop === link.name 
-                      ? "opacity-100 visible translate-y-0" 
-                      : "opacity-0 invisible -translate-y-2"}`}
+                    ${hoveredDropdownDesktop === link.name
+                        ? "opacity-100 visible translate-y-0"
+                        : "opacity-0 invisible -translate-y-2"}`}
                   >
                     {link.sublinks.map((sublink) => (
                       <li key={sublink.href}>
@@ -163,19 +164,17 @@ export default function Navbar() {
                         {link.name}
                       </span>
                       <FiChevronDown
-                        className={`transition ${
-                          openDropdownMobile === link.name ? "rotate-180" : ""
-                        }`}
+                        className={`transition ${openDropdownMobile === link.name ? "rotate-180" : ""
+                          }`}
                       />
                     </button>
 
                     <ul
                       className={`pl-8 flex flex-col gap-2 mt-2 text-base transition-all duration-500 ease-out
-                      ${
-                        openDropdownMobile === link.name
+                      ${openDropdownMobile === link.name
                           ? "max-h-[400px] opacity-100 translate-y-0"
                           : "max-h-0 opacity-0 -translate-y-3 overflow-hidden"
-                      }`}
+                        }`}
                     >
                       {link.sublinks.map((sub) => (
                         <li key={sub.href}>

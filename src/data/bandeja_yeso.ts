@@ -38,5 +38,11 @@ export const bandejasYeso: BandejaYeso[] = [
     precio: "$1500",
     imagenes: ["/saumerio_3.jpg", "/saumerio_4.jpg"]
   },
+  {
+    nombre: "Bandeja de Yeso Doradas y Plateadas",
+    descripcion: "Bandejas de yeso pintadas en dorado y plateado, perfectas para ocasiones especiales.",
+    precio: "$1500",
+    imagenes: ["/yeso_15.jpg", "/yeso_17.jpg", "/yeso_18.jpg"]
+  },
 
 ]

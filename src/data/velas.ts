@@ -7,6 +7,12 @@ export interface Vela {
 }
 
 export const velas: Vela[] = [
+  {
+    nombre: "Vela con forma de Arbol",
+    descripcion: "Aromas suaves para relajarte",
+    precio: "$1500",
+    imagenes: ["/vela_57.jpg", "/vela_58.jpg", "/vela_59.jpg"]
+  },
 
   {
     nombre: "Vela en Frasco",
@@ -21,7 +27,7 @@ export const velas: Vela[] = [
     imagenes: ["/vela_8.jpg", "/vela_9.jpg"]
   },
   {
-    nombre: "Vela con forma de Elefante",
+    nombre: "Vela con forma de osito",
     descripcion: "Aromas suaves para relajarte",
     precio: "$1500",
     imagenes: ["/vela_10.jpg"]
@@ -42,13 +48,7 @@ export const velas: Vela[] = [
     nombre: "Vela con forma de nube",
     descripcion: "Aromas suaves para relajarte",
     precio: "$1500",
-    imagenes: ["/vela_15.jpg", "/vela_16.jpg"]
-  },
-  {
-    nombre: "Vela con forma de nube",
-    descripcion: "Aromas suaves para relajarte",
-    precio: "$1500",
-    imagenes: ["/vela_17.jpg", "/vela_18.jpg"]
+    imagenes: ["/vela_15.jpg", "/vela_16.jpg", "/vela_17.jpg", "/vela_18.jpg", "/vela_23.jpg", "/vela_24.jpg", "/vela_25.jpg"]
   },
   {
     nombre: "Vela Relax",
@@ -61,12 +61,6 @@ export const velas: Vela[] = [
     descripcion: "Aromas suaves para relajarte",
     precio: "$1500",
     imagenes: ["/vela_21.jpg", "/vela_22.jpg"]
-  },
-  {
-    nombre: "Vela con forma de nube",
-    descripcion: "Aromas suaves para relajarte",
-    precio: "$1500",
-    imagenes: ["/vela_23.jpg", "/vela_24.jpg", "/vela_25.jpg"]
   },
   {
     nombre: "Vela con forma de Rosa",
@@ -93,40 +87,34 @@ export const velas: Vela[] = [
     imagenes: ["/vela_36.jpg", "/vela_37.jpg", "/vela_38.jpg"]
   },
   {
-    nombre: "Vela en cuenco de madera",
+    nombre: "Vela en cuenco de madera - MEDIANO",
     descripcion: "Aromas suaves para relajarte",
     precio: "$1500",
     imagenes: ["/vela_39.jpg", "/vela_40.jpg", "/vela_41.jpg"]
   },
   {
-    nombre: "Vela en cuenco de madera",
+    nombre: "Vela en cuenco de madera - GRANDE",
     descripcion: "Aromas suaves para relajarte",
     precio: "$1500",
     imagenes: ["/vela_42.jpg", "/vela_43.jpg"]
   },
   {
-    nombre: "Vela en cuenco de madera",
+    nombre: "Vela en cuenco de madera - CHICO",
     descripcion: "Aromas suaves para relajarte",
     precio: "$1500",
-    imagenes: ["/vela_44.jpg", "/vela_45.jpg", "/vela_46.jpg"]
+    imagenes: ["/vela_44.jpg", "/vela_45.jpg", "/vela_46.jpg", "/vela_47.jpg", "/vela_48.jpg"]
   },
   {
-    nombre: "Vela en cuenco de madera",
-    descripcion: "Aromas suaves para relajarte",
-    precio: "$1500",
-    imagenes: ["/vela_47.jpg", "/vela_48.jpg"]
-  },
-  {
-    nombre: "Vela en cuenco de madera",
+    nombre: "Vela en cuenco de madera - CHICO",
     descripcion: "Aromas suaves para relajarte",
     precio: "$1500",
     imagenes: ["/vela_50.jpg", "/vela_51.jpg", "/vela_52.jpg"]
   },
-    {
-    nombre: "Vela en cuenco de madera",
+  {
+    nombre: "Vela en cuenco de madera - CHICO",
     descripcion: "Aromas suaves para relajarte",
     precio: "$1500",
-    imagenes: [ "/vela_53.jpg", "/vela_54.jpg", "/vela_55.jpg"]
+    imagenes: ["/vela_53.jpg", "/vela_54.jpg", "/vela_55.jpg"]
   },
 
 
