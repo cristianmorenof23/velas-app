@@ -10,13 +10,13 @@ export const bandejasYeso: BandejaYeso[] = [
   {
     nombre: "Bandeja Yeso Floral",
     descripcion: "Bandejas de yeso con diseño floral, ideales para decoración.",
-    precio: "$1500",
+    precio: "$2500",
     imagenes: ["/yeso_10.jpg", "/yeso_33.jpg"]
   },
   {
     nombre: "Plato Redondo de Yeso",
     descripcion: "Platos redondos de yeso, perfectos para velas o decoración. Se vende por cantidad",
-    precio: "$1500",
+    precio: "$2500",
     imagenes: ["/plato_1.jpg", "/plato_2.jpg"]
   },
   {

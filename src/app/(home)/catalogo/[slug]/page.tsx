@@ -19,9 +19,9 @@ const dataMap: Record<string, any[]> = {
   "carrusel-sin-tapa": carrusel_sin_tapa,
   "carrusel-con-tapa": carrusel_con_tapa,
   "bandejas-yeso": bandejasYeso,
-  "porta-saumerios": saumerios,
+  "porta-sahumerios": saumerios,
   "velas-bandeja-yeso": velas_bandeja,
-  "alhajero-yeso": alhajero_yeso,
+  "alajero-yeso": alhajero_yeso,
   "piezas-yeso": piezas_yeso,
   // etc...
 };
