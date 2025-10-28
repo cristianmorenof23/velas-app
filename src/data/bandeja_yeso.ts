@@ -16,7 +16,7 @@ export const bandejasYeso: BandejaYeso[] = [
   {
     nombre: "Plato Redondo de Yeso",
     descripcion: "Platos redondos de yeso, perfectos para velas o decoración. Se vende por cantidad",
-    precio: "$2500",
+    precio: "$1500",
     imagenes: ["/plato_1.jpg", "/plato_2.jpg"]
   },
   {
