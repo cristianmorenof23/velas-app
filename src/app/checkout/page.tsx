@@ -26,14 +26,14 @@ export default function CheckoutPage() {
   const total = getTotalPrice();
 
   const message = encodeURIComponent(
-    `¡Hola! 😊 Quiero hacer este pedido:\n\n` +
+    `¡Hola Yani!  Quiero hacer este pedido:\n\n` +
       cart
         .map(
           (item) =>
-            `🕯️ ${item.nombre}\nCantidad: ${item.cantidad}\nSubtotal: $${item.precio * item.cantidad}\n`
+            ` ${item.nombre}\nCantidad: ${item.cantidad}\nSubtotal: $${item.precio * item.cantidad}\n`
         )
         .join("\n") +
-      `\n💰 Total: $${total}\n\n¿Me confirmás disponibilidad y medios de pago?\n¡Gracias! 🙌`
+      `\n Total: $${total}\n\n¿Me confirmás disponibilidad y medios de pago?\n¡Gracias! `
   );
 
   const whatsappURL = `https://wa.me/3517376607?text=${message}`;

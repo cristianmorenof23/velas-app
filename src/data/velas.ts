@@ -8,6 +8,32 @@ export interface Vela {
 
 export const velas: Vela[] = [
   {
+    nombre: "Vela con forma de Leoncito",
+    descripcion: "Aromas suaves para relajarte",
+    precio: "$1500",
+    imagenes: ["/vela_leon_1.jpg", "/vela_leon_2.jpg", "/vela_leon_3.jpg"]
+  },
+  {
+    nombre: "Vela con forma de Jirafa",
+    descripcion: "Aromas suaves para relajarte",
+    precio: "$1500",
+    imagenes: ["/vela_jirafa_1.jpg", "/vela_jirafa_2.jpg", "/vela_jirafa_3.jpg"]
+  },
+  {
+    nombre: "Vela con forma de Alce",
+    descripcion: "Aromas suaves para relajarte",
+    precio: "$1500",
+    imagenes: ["/vela_alce_1.jpg"]
+  },
+  {
+    nombre: "Vela con forma de Papa noel",
+    descripcion: "Aromas suaves para relajarte",
+    precio: "$1500",
+    imagenes: ["/vela_papanoel_1.jpg", "/vela_papanoel_2.jpg", "/vela_papanoel_3.jpg"]
+  },
+
+
+  {
     nombre: "Vela con forma de Arbol",
     descripcion: "Aromas suaves para relajarte",
     precio: "$3500",
