@@ -7,10 +7,55 @@ import { Toaster } from "sonner";
 
 
 export const metadata: Metadata = {
-  title: "Luz Serena - Velas Artesanales",
-  description: "Catálogo de velas artesanales Luz Serena",
-  icons: "/logo_vela.png",
-
+  title: "Luz Serena | Velas Artesanales y Aromáticas",
+  description:
+    "Velas artesanales, aromáticas y decorativas hechas a mano. Diseños elegantes, aromas únicos y detalles personalizados para tus espacios.",
+  keywords: [
+    "velas artesanales",
+    "velas aromáticas",
+    "velas decorativas",
+    "velas de soja",
+    "regalos artesanales",
+    "decoración con velas",
+    "velas hechas a mano",
+    "Luz Serena"
+  ],
+  icons: {
+    icon: "/logo_vela.svg",
+  },
+metadataBase: new URL("https://www.velasluzserena.com"),
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    title: "Luz Serena | Velas Artesanales 🌙✨",
+    description:
+      "Velas artesanales hechas a mano con amor. Aromas premium y diseños exclusivos para iluminar tus momentos.",
+    url: "https://www.velasluzserena.com",
+    siteName: "Luz Serena",
+    images: [
+      {
+        url: "/velas_meta.png", 
+        width: 1200,
+        height: 630,
+        alt: "Velas artesanales Luz Serena",
+      },
+    ],
+    locale: "es_AR",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Luz Serena | Velas Artesanales",
+    description:
+      "Velas artesanales y aromáticas para decorar tus espacios y crear momentos mágicos ✨",
+    images: ["/velas_meta.png"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+  themeColor: "#F7F3ED",
 };
 
 
