@@ -11,9 +11,9 @@
   "dependencies": {
     "@vercel/analytics": "^2.0.1",
     "framer-motion": "^12.23.22",
-    "next": "15.5.3",
-    "react": "19.1.0",
-    "react-dom": "19.1.0",
+    "next": "^15.5.3",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
     "react-icons": "^5.5.0",
     "sonner": "^2.0.7",
     "swiper": "^12.0.1",
