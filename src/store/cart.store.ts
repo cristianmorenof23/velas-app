@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { persist } from "zustand/middleware";
+import { persist, createJSONStorage } from "zustand/middleware";
 
 export interface CartItem {
   nombre: string;
@@ -29,13 +29,12 @@ export const useCartStore = create<CartStore>()(
         const exist = cart.find((i) => i.nombre === item.nombre);
 
         if (exist) {
-          exist.cantidad += item.cantidad; 
+          exist.cantidad += item.cantidad;
           set({ cart: [...cart] });
         } else {
-          set({ cart: [...cart, item] }); 
+          set({ cart: [...cart, item] });
         }
       },
-
 
       removeFromCart: (nombre) => {
         set({
@@ -54,6 +53,7 @@ export const useCartStore = create<CartStore>()(
         const cart = get().cart;
         const item = cart.find((i) => i.nombre === nombre);
         if (!item) return;
+
         if (item.cantidad > 1) {
           item.cantidad--;
           set({ cart: [...cart] });
@@ -70,6 +70,9 @@ export const useCartStore = create<CartStore>()(
 
       clearCart: () => set({ cart: [] }),
     }),
-    { name: "carrito-velas" } // 🔥 LocalStorage key
+    {
+      name: "carrito-velas",
+      storage: createJSONStorage(() => localStorage),
+    }
   )
 );

@@ -1,4 +1,4 @@
-import type { Metadata, Viewport } from "next";
+import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Luz Serena | Velas Artesanales y Aromáticas",
@@ -49,10 +49,6 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
-};
-
-export const viewport: Viewport = {
-  themeColor: "#F7F3ED",
 };
 
 export default function HomeLayout({

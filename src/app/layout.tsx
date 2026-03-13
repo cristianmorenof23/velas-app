@@ -3,7 +3,7 @@
 import Navbar from "@/components/NavBar";
 import "./globals.css";
 import Footer from "@/components/Footer";
-import { Metadata, Viewport } from "next";
+import { Metadata } from "next";
 import { Toaster } from "sonner";
 import { Analytics } from "@vercel/analytics/react";
 
@@ -56,12 +56,6 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
-};
-
-export const viewport: Viewport = {
-  themeColor: "#F7F3ED",
-  width: "device-width",
-  initialScale: 1,
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
