@@ -4,7 +4,7 @@ import "./globals.css";
 import Footer from "@/components/Footer";
 import { Metadata } from "next";
 import { Toaster } from "sonner";
-
+import { Analytics } from "@vercel/analytics/react"
 
 export const metadata: Metadata = {
   title: "Luz Serena | Velas Artesanales y Aromáticas",
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   icons: {
     icon: "/logo_vela.svg",
   },
-metadataBase: new URL("https://www.velasluzserena.com"),
+  metadataBase: new URL("https://www.velasluzserena.com"),
   alternates: {
     canonical: "/",
   },
@@ -35,7 +35,7 @@ metadataBase: new URL("https://www.velasluzserena.com"),
     siteName: "Luz Serena",
     images: [
       {
-        url: "/velas_meta.png", 
+        url: "/velas_meta.png",
         width: 1200,
         height: 630,
         alt: "Velas artesanales Luz Serena",
@@ -65,6 +65,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="bg-[#F7F3ED] text-[#8A5F79]">
         <Navbar />
         {children}
+        <Analytics />
+
         <Toaster richColors position="top-center" />
         <Footer />
       </body>
