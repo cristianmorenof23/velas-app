@@ -1,10 +1,11 @@
 // app/layout.tsx
+
 import Navbar from "@/components/NavBar";
 import "./globals.css";
 import Footer from "@/components/Footer";
-import { Metadata } from "next";
+import { Metadata, Viewport } from "next";
 import { Toaster } from "sonner";
-import { Analytics } from "@vercel/analytics/react"
+import { Analytics } from "@vercel/analytics/react";
 
 export const metadata: Metadata = {
   title: "Luz Serena | Velas Artesanales y Aromáticas",
@@ -18,7 +19,7 @@ export const metadata: Metadata = {
     "regalos artesanales",
     "decoración con velas",
     "velas hechas a mano",
-    "Luz Serena"
+    "Luz Serena",
   ],
   icons: {
     icon: "/logo_vela.svg",
@@ -55,9 +56,13 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
-  themeColor: "#F7F3ED",
 };
 
+export const viewport: Viewport = {
+  themeColor: "#F7F3ED",
+  width: "device-width",
+  initialScale: 1,
+};
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (

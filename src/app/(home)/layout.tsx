@@ -1,5 +1,4 @@
-
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 
 export const metadata: Metadata = {
   title: "Luz Serena | Velas Artesanales y Aromáticas",
@@ -13,12 +12,12 @@ export const metadata: Metadata = {
     "regalos artesanales",
     "decoración con velas",
     "velas hechas a mano",
-    "Luz Serena"
+    "Luz Serena",
   ],
   icons: {
     icon: "/logo_vela.svg",
   },
-metadataBase: new URL("https://www.velasluzserena.com"),
+  metadataBase: new URL("https://www.velasluzserena.com"),
   alternates: {
     canonical: "/",
   },
@@ -30,7 +29,7 @@ metadataBase: new URL("https://www.velasluzserena.com"),
     siteName: "Luz Serena",
     images: [
       {
-        url: "/velas_meta.png", 
+        url: "/velas_meta.png",
         width: 1200,
         height: 630,
         alt: "Velas artesanales Luz Serena",
@@ -50,11 +49,14 @@ metadataBase: new URL("https://www.velasluzserena.com"),
     index: true,
     follow: true,
   },
+};
+
+export const viewport: Viewport = {
   themeColor: "#F7F3ED",
 };
 
 export default function HomeLayout({
-  children
+  children,
 }: {
   children: React.ReactNode;
 }) {
