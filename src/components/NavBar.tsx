@@ -59,11 +59,10 @@ export default function Navbar() {
   return (
     <nav
       className={`fixed top-0 w-full z-50 transition-all duration-300
-      ${
-        scrolled
-          ? "bg-[#B886A3]/95 backdrop-blur-xl shadow-[0_10px_40px_rgba(0,0,0,0.15)] border-b border-white/10"
-          : "bg-[#B886A3]/70 backdrop-blur-lg"
-      } text-[#F7F3ED]`}
+      ${scrolled
+          ? "bg-[#B886A3] md:bg-[#B886A3]/95 md:backdrop-blur-xl shadow-[0_10px_40px_rgba(0,0,0,0.15)] border-b border-white/10"
+          : "bg-[#B886A3] md:bg-[#B886A3]/70 md:backdrop-blur-lg"
+        } text-[#F7F3ED]`}
     >
       <div
         className={`max-w-7xl mx-auto flex items-center justify-between px-6 transition-all duration-300
@@ -129,12 +128,11 @@ export default function Navbar() {
 
                 {hasSublinks && (
                   <ul
-                    className={`absolute left-0 mt-3 w-64 rounded-xl bg-white/10 backdrop-blur-xl shadow-xl border border-white/10 transition-all duration-300
-                    ${
-                      hoveredDropdownDesktop === link.name
+                    className={`absolute left-0 mt-3 w-64 rounded-xl bg-black/40 backdrop-blur-xl shadow-xl border border-white/10 transition-all duration-300
+                    ${hoveredDropdownDesktop === link.name
                         ? "opacity-100 visible translate-y-0"
                         : "opacity-0 invisible -translate-y-2"
-                    }`}
+                      }`}
                   >
                     {link.sublinks.map((sublink) => (
                       <li key={sublink.href}>
@@ -168,7 +166,7 @@ export default function Navbar() {
       {/* Mobile Menu */}
       <div
         className={`fixed top-0 right-0 h-full w-3/4 max-w-[300px]
-        bg-[#B886A3]/95 backdrop-blur-xl pt-6 shadow-xl z-50
+        bg-[#B886A3] pt-6 shadow-xl z-50
         transition-all duration-500 ease-[cubic-bezier(.25,.8,.25,1)]
         ${open ? "translate-x-0" : "translate-x-full"}`}
       >
@@ -206,19 +204,17 @@ export default function Navbar() {
                       </span>
 
                       <FiChevronDown
-                        className={`transition ${
-                          openDropdownMobile === link.name ? "rotate-180" : ""
-                        }`}
+                        className={`transition ${openDropdownMobile === link.name ? "rotate-180" : ""
+                          }`}
                       />
                     </button>
 
                     <ul
                       className={`pl-6 flex flex-col gap-2 mt-2 text-sm transition-all duration-500
-                      ${
-                        openDropdownMobile === link.name
+                      ${openDropdownMobile === link.name
                           ? "max-h-[400px] opacity-100"
                           : "max-h-0 opacity-0 overflow-hidden"
-                      }`}
+                        }`}
                     >
                       {link.sublinks.map((sub) => (
                         <li key={sub.href}>

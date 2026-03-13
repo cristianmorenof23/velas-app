@@ -1,4 +1,5 @@
 "use client";
+
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import Image from "next/image";
@@ -13,44 +14,45 @@ export default function HomePage() {
       img: "/velas_5.jpg",
       title: "Relajación Profunda",
       text: "Aromas que calman la mente y liberan tensiones.",
-      icon: <FaLeaf size={60} className="text-white drop-shadow-lg" />,
+      icon: <FaLeaf size={60} className="text-white drop-shadow-xl" />,
     },
     {
       img: "/velas_3.jpg",
       title: "Energía Positiva",
       text: "Fragancias que revitalizan tu interior.",
-      icon: <FaBolt size={60} className="text-white drop-shadow-lg" />,
+      icon: <FaBolt size={60} className="text-white drop-shadow-xl" />,
     },
     {
       img: "/carrusel_1.jpg",
       title: "Ambiente Acogedor",
       text: "Transformá tu espacio en tu lugar favorito.",
-      icon: <FaHome size={60} className="text-white drop-shadow-lg" />,
+      icon: <FaHome size={60} className="text-white drop-shadow-xl" />,
     },
     {
       img: "/carrusel_2.jpg",
       title: "Bienestar Emocional",
       text: "Más paz, más armonía, más luz ✨",
-      icon: <FaPeace size={60} className="text-white drop-shadow-lg" />,
+      icon: <FaPeace size={60} className="text-white drop-shadow-xl" />,
     },
   ];
 
   return (
     <>
-      {/* 🎞️ SLIDER */}
-      <section id="slider" className="fade-in-fwd mt-20">
+      {/* HERO SLIDER */}
+      <section className="mt-20">
         <Swiper
           modules={[Navigation, Pagination, Autoplay]}
           loop
           navigation
           pagination={{ clickable: true }}
-          autoplay={{ delay: 4000 }}
+          autoplay={{ delay: 4500 }}
           slidesPerView={1}
-          className="w-full h-[420px] md:h-[520px]"
+          className="w-full h-[420px] sm:h-[500px] md:h-[620px]"
         >
           {slides.map((slide, i) => (
             <SwiperSlide key={i}>
               <div className="relative w-full h-full">
+
                 <Image
                   src={slide.img}
                   alt={slide.title}
@@ -59,23 +61,31 @@ export default function HomePage() {
                   className="object-cover"
                 />
 
-                <div className="absolute inset-0 bg-black/45" />
+                {/* Overlay premium */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-black/20" />
 
-                <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-white px-4 pt-10 sm:pt-0">
+                {/* Contenido */}
+                <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-white px-6">
+
                   <motion.div
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.8 }}
-                    className="flex flex-col items-center"
+                    initial={{ opacity: 0, y: 40 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.9 }}
+                    className="flex flex-col items-center max-w-3xl"
                   >
-                    <div className="mb-4">{slide.icon}</div>
-                    <h3 className="text-2xl sm:text-4xl md:text-5xl font-extrabold mb-2 drop-shadow-xl">
+
+                    <div className="mb-5">{slide.icon}</div>
+
+                    <h2 className="text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight bg-gradient-to-r from-white to-[#F7F3ED] bg-clip-text text-transparent drop-shadow-xl">
                       {slide.title}
-                    </h3>
-                    <p className="text-sm sm:text-lg md:text-2xl drop-shadow-md opacity-95 max-w-[90%] mx-auto">
+                    </h2>
+
+                    <p className="mt-4 text-base sm:text-lg md:text-2xl opacity-95 max-w-[90%]">
                       {slide.text}
                     </p>
+
                   </motion.div>
+
                 </div>
               </div>
             </SwiperSlide>
@@ -83,79 +93,92 @@ export default function HomePage() {
         </Swiper>
       </section>
 
-      {/* 🌸 INFO */}
-      <section className="bg-[#F7F3ED] text-[#8A5F79] py-16 px-6 md:px-12 text-center">
-        <h2 className="text-3xl md:text-4xl font-bold mb-6">
+      {/* INFO */}
+      <motion.section
+        initial={{ opacity: 0, y: 60 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7 }}
+        viewport={{ once: true }}
+        className="bg-[#F7F3ED] text-[#8A5F79] py-20 px-6 md:px-12 text-center"
+      >
+
+        <h2 className="text-3xl md:text-5xl font-bold mb-6">
           El poder de las velas artesanales
         </h2>
-        <p className="max-w-3xl mx-auto text-lg md:text-xl mb-14 opacity-90">
+
+        <p className="max-w-3xl mx-auto text-lg md:text-xl mb-16 opacity-90">
           Velas diseñadas para crear ambientes cálidos, llenos de armonía y bienestar.
         </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-5xl mx-auto mb-14">
-          <div className="p-6 bg-white rounded-xl shadow-md hover:shadow-xl transition hover:-translate-y-1">
-            <FiHeart size={48} className="text-[#B886A3] mx-auto mb-3" />
+        {/* CARDS */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 max-w-6xl mx-auto mb-16">
+
+          <div className="p-8 bg-white/70 backdrop-blur-lg rounded-2xl shadow-lg border border-white/40 hover:shadow-2xl transition duration-300 hover:-translate-y-2">
+            <FiHeart size={48} className="text-[#B886A3] mx-auto mb-4" />
             <h3 className="text-lg font-semibold">Artesanales</h3>
             <p className="text-sm opacity-80 mt-2">
               Hechas a mano con amor y dedicación.
             </p>
           </div>
 
-          <div className="p-6 bg-white rounded-xl shadow-md hover:shadow-xl transition hover:-translate-y-1">
-            <FiWind size={48} className="text-[#B886A3] mx-auto mb-3" />
+          <div className="p-8 bg-white/70 backdrop-blur-lg rounded-2xl shadow-lg border border-white/40 hover:shadow-2xl transition duration-300 hover:-translate-y-2">
+            <FiWind size={48} className="text-[#B886A3] mx-auto mb-4" />
             <h3 className="text-lg font-semibold">Aromas únicos</h3>
             <p className="text-sm opacity-80 mt-2">
               Fragancias seleccionadas para cada momento especial.
             </p>
           </div>
 
-          <div className="p-6 bg-white rounded-xl shadow-md hover:shadow-xl transition hover:-translate-y-1">
-            <FiSmile size={48} className="text-[#B886A3] mx-auto mb-3" />
+          <div className="p-8 bg-white/70 backdrop-blur-lg rounded-2xl shadow-lg border border-white/40 hover:shadow-2xl transition duration-300 hover:-translate-y-2">
+            <FiSmile size={48} className="text-[#B886A3] mx-auto mb-4" />
             <h3 className="text-lg font-semibold">Bienestar</h3>
             <p className="text-sm opacity-80 mt-2">
               Diseñadas para traer paz y armonía.
             </p>
           </div>
+
         </div>
 
+        {/* CTA */}
         <Link
           href="/catalogo"
-          className="inline-block bg-[#B886A3] text-white px-8 py-3 rounded-full font-bold text-lg hover:bg-[#9c7090] shadow-md hover:shadow-lg transition"
+          className="inline-block bg-gradient-to-r from-[#B886A3] to-[#9c7090] text-white px-10 py-4 rounded-full font-bold text-lg shadow-lg hover:shadow-xl hover:scale-105 transition"
         >
           Ver Catálogo 🛍️
         </Link>
-      </section>
 
-      {/* Redes sociales */}
-      {/* Redes Sociales */}
-      <section className="py-16 text-center bg-[#F7F3ED]">
-        <h3 className="text-xl md:text-2xl font-semibold text-[#8A5F79] mb-8">
+      </motion.section>
+
+      {/* REDES SOCIALES */}
+      <section className="py-20 text-center bg-[#F7F3ED]">
+
+        <h3 className="text-xl md:text-2xl font-semibold text-[#8A5F79] mb-10">
           Seguinos en redes ✨
         </h3>
 
-        <div className="flex justify-center gap-10 md:gap-16">
+        <div className="flex justify-center">
 
-          {/* Instagram */}
           <Link
             href="https://www.instagram.com/velas.luzserena"
             target="_blank"
             className="flex flex-col items-center group transition hover:scale-110"
           >
-            <div className="w-14 h-14 rounded-full bg-white shadow-md flex items-center justify-center border border-[#B886A3]/40 group-hover:bg-[#B886A3]/10 transition">
-              <i className="text-[#B886A3] text-3xl group-hover:text-[#8A5F79]">
-                <FaInstagram />
-              </i>
+
+            <div className="w-16 h-16 rounded-full bg-white shadow-lg flex items-center justify-center border border-[#B886A3]/40 group-hover:bg-gradient-to-r group-hover:from-[#B886A3] group-hover:to-[#9c7090] transition">
+
+              <FaInstagram className="text-[#B886A3] text-3xl group-hover:text-white" />
+
             </div>
-            <span className="mt-2 text-sm font-semibold text-[#8A5F79]">
+
+            <span className="mt-3 text-sm font-semibold text-[#8A5F79]">
               @velas.luzserena
             </span>
+
           </Link>
 
         </div>
 
       </section>
-
-
     </>
   );
 }

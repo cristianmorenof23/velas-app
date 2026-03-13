@@ -1,64 +1,103 @@
 "use client";
-import { useState, useEffect } from "react";
-import VelaCard from "@/components/VelasCard";
-import { velas } from "@/data/velas";
-import { FiArrowUp } from "react-icons/fi";
-import React from 'react'
 
-export default function Catalogo() {
+import Image from "next/image";
+import { FiShoppingCart } from "react-icons/fi";
 
-  const [showButton, setShowButton] = useState(false);
+interface Props {
+  nombre: string;
+  descripcion: string;
+  precio: number;
+  imagenes: string[];
+  telefono: string;
+}
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 300) {
-        setShowButton(true);
-      } else {
-        setShowButton(false);
-      }
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  };
+export default function VelaCard({
+  nombre,
+  descripcion,
+  precio,
+  imagenes,
+}: Props) {
   return (
-    <>
+    <div className="
+      group
+      bg-white
+      rounded-2xl
+      overflow-hidden
+      shadow-sm
+      hover:shadow-xl
+      transition-all
+      duration-300
+      hover:-translate-y-2
+      border border-gray-100
+    ">
 
-      <section className="max-w-3xl mx-auto px-4 py-10 mt-32 text-center fade-in-fwd">
-        <h2 className="text-2xl font-bold text-center mb-6 text-[#8A5F79]">
-          Nuestro Catálogo
-        </h2>
+      {/* Imagen */}
+      <div className="relative h-64 w-full overflow-hidden">
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-          {velas.map((v, i) => (
-            <VelaCard
-              key={i}
-              nombre={v.nombre}
-              descripcion={v.descripcion}
-              precio={v.precio}
-              imagenes={v.imagenes}
-              telefono="3517376607" // teléfono de la señora
-            />
-          ))}
+        <Image
+          src={imagenes[0]}
+          alt={nombre}
+          fill
+          className="
+            object-cover
+            transition-transform
+            duration-500
+            group-hover:scale-110
+          "
+        />
+
+        {/* Badge */}
+        <span className="
+          absolute top-3 left-3
+          bg-white/90
+          text-xs
+          px-3 py-1
+          rounded-full
+          font-medium
+          text-[#8A5F79]
+          shadow
+        ">
+          Artesanal
+        </span>
+
+      </div>
+
+      {/* Contenido */}
+      <div className="p-5 flex flex-col gap-3">
+
+        <h3 className="text-lg font-semibold text-[#5c3c4d]">
+          {nombre}
+        </h3>
+
+        <p className="text-sm text-gray-500 line-clamp-2">
+          {descripcion}
+        </p>
+
+        <div className="flex items-center justify-between mt-2">
+
+          <span className="text-lg font-bold text-[#B886A3]">
+            ${precio}
+          </span>
+
+          <button
+            className="
+              flex items-center gap-2
+              bg-[#B886A3]
+              text-white
+              px-4 py-2
+              rounded-lg
+              text-sm
+              hover:bg-[#9c7090]
+              transition
+            "
+          >
+            <FiShoppingCart size={16} />
+            Comprar
+          </button>
+
         </div>
-      </section>
 
-      {/* BOTÓN SCROLL TOP */}
-      {showButton && (
-        <button
-          onClick={scrollToTop}
-          className="fixed bottom-6 right-6 bg-[#B886A3] text-[#F7F3ED] p-3 hover:cursor-pointer hover:scale-125 rounded-full shadow-lg hover:bg-[#9c7090] transition"
-          aria-label="Volver arriba"
-        >
-          <FiArrowUp size={24} />
-        </button>
-      )}
-    </>
-  )
+      </div>
+    </div>
+  );
 }
