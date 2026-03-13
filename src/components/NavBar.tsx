@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import {
   FiMenu,
@@ -21,9 +21,19 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [openDropdownMobile, setOpenDropdownMobile] = useState<string | null>(null);
   const [hoveredDropdownDesktop, setHoveredDropdownDesktop] = useState<string | null>(null);
+  const [scrolled, setScrolled] = useState(false);
 
   const pathname = usePathname();
   const totalItems = useCartStore((state) => state.getTotalItems());
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 40);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const links = [
     { name: "Inicio", href: "/", icon: <FiHome size={18} /> },
@@ -47,39 +57,51 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className="fixed top-0 w-full bg-[#B886A3] text-[#F7F3ED] shadow-lg z-50">
-      <div className="max-w-6xl mx-auto flex items-center justify-between p-4">
-
-        {/* ✅ Logo */}
-        <Link href="/" className="flex items-center gap-3">
+    <nav
+      className={`fixed top-0 w-full z-50 transition-all duration-300
+      ${
+        scrolled
+          ? "bg-[#B886A3]/95 backdrop-blur-xl shadow-[0_10px_40px_rgba(0,0,0,0.15)] border-b border-white/10"
+          : "bg-[#B886A3]/70 backdrop-blur-lg"
+      } text-[#F7F3ED]`}
+    >
+      <div
+        className={`max-w-7xl mx-auto flex items-center justify-between px-6 transition-all duration-300
+        ${scrolled ? "py-3" : "py-5"}`}
+      >
+        {/* Logo */}
+        <Link href="/" className="flex items-center gap-3 group">
           <Image
             src="/logo_vela.png"
             alt="Luz Serena"
             width={60}
             height={60}
             priority
-            className="object-contain"
+            className="object-contain transition-transform duration-300 group-hover:scale-105"
           />
-          <h1 className="text-2xl font-bold hidden sm:inline-block tracking-tight">Luz Serena</h1>
+          <h1 className="text-2xl font-semibold tracking-wide hidden sm:block">
+            Luz Serena
+          </h1>
         </Link>
 
-        {/* ✅ Carrito Mobile */}
+        {/* Carrito Mobile */}
         <Link href="/carrito" className="md:hidden relative mr-3">
           <FiShoppingCart size={24} />
+
           {totalItems > 0 && (
-            <span className="absolute -top-2 -right-2 bg-red-600 text-white text-xs font-bold px-1.5 rounded-full animate-pulse">
+            <span className="absolute -top-2 -right-2 bg-white text-[#B886A3] text-xs font-bold px-1.5 rounded-full">
               {totalItems}
             </span>
           )}
         </Link>
 
-        {/* ✅ Menú Mobile Button */}
+        {/* Botón Mobile */}
         <button className="md:hidden" onClick={() => setOpen(true)}>
           <FiMenu size={28} />
         </button>
 
-        {/* ✅ Menú Desktop */}
-        <div className="hidden md:flex gap-10 text-lg font-semibold items-center">
+        {/* Desktop Menu */}
+        <div className="hidden md:flex gap-10 text-lg items-center">
           {links.map((link) => {
             const isActive = pathname === link.href;
             const hasSublinks = !!link.sublinks;
@@ -91,26 +113,34 @@ export default function Navbar() {
                 onMouseEnter={() => hasSublinks && setHoveredDropdownDesktop(link.name)}
                 onMouseLeave={() => hasSublinks && setHoveredDropdownDesktop(null)}
               >
-                <Link href={link.href} className="flex items-center gap-1 hover:opacity-80">
+                <Link href={link.href} className="flex items-center gap-1 relative group">
                   {link.icon}
-                  <span className={isActive ? "font-bold underline" : ""}>
-                    {link.name}
+
+                  <span className="relative">
+                    <span className={isActive ? "font-semibold" : ""}>
+                      {link.name}
+                    </span>
+
+                    <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-white transition-all duration-300 group-hover:w-full"></span>
                   </span>
+
                   {hasSublinks && <FiChevronDown size={12} />}
                 </Link>
 
                 {hasSublinks && (
                   <ul
-                    className={`absolute left-0 mt-2 bg-[#B886A3] w-56 shadow-lg rounded-lg transition-all duration-300 
-                    ${hoveredDropdownDesktop === link.name
+                    className={`absolute left-0 mt-3 w-64 rounded-xl bg-white/10 backdrop-blur-xl shadow-xl border border-white/10 transition-all duration-300
+                    ${
+                      hoveredDropdownDesktop === link.name
                         ? "opacity-100 visible translate-y-0"
-                        : "opacity-0 invisible -translate-y-2"}`}
+                        : "opacity-0 invisible -translate-y-2"
+                    }`}
                   >
                     {link.sublinks.map((sublink) => (
                       <li key={sublink.href}>
                         <Link
                           href={sublink.href}
-                          className="block px-4 py-2 hover:bg-[#A87493] transition"
+                          className="block px-5 py-3 hover:bg-white/10 transition"
                         >
                           {sublink.name}
                         </Link>
@@ -122,11 +152,12 @@ export default function Navbar() {
             );
           })}
 
-          {/* ✅ Carrito Desktop */}
+          {/* Carrito Desktop */}
           <Link href="/carrito" className="relative">
             <FiShoppingCart size={26} />
+
             {totalItems > 0 && (
-              <span className="absolute -top-2 -right-2 bg-red-600 text-white text-xs font-bold px-1.5 rounded-full animate-pulse">
+              <span className="absolute -top-2 -right-2 bg-white text-[#B886A3] text-xs font-bold px-1.5 rounded-full">
                 {totalItems}
               </span>
             )}
@@ -134,17 +165,26 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* ✅ Menú Mobile Animado */}
+      {/* Mobile Menu */}
       <div
-        className={`fixed top-0 right-0 h-full w-3/4 max-w-[280px] bg-[#B886A3] pt-6 shadow-xl z-50
+        className={`fixed top-0 right-0 h-full w-3/4 max-w-[300px]
+        bg-[#B886A3]/95 backdrop-blur-xl pt-6 shadow-xl z-50
         transition-all duration-500 ease-[cubic-bezier(.25,.8,.25,1)]
-        ${open ? "translate-x-0 opacity-100" : "translate-x-full opacity-0"}`}
+        ${open ? "translate-x-0" : "translate-x-full"}`}
       >
-        <button className="absolute top-4 right-4" onClick={() => setOpen(false)}>
-          <FiX size={28} />
-        </button>
+        {/* Header Mobile */}
+        <div className="flex items-center justify-between px-6 pb-6 border-b border-white/20">
+          <div className="flex items-center gap-3">
+            <Image src="/logo_vela.png" alt="Luz Serena" width={36} height={36} />
+            <span className="text-lg font-semibold">Luz Serena</span>
+          </div>
 
-        <nav className="flex flex-col mt-10 gap-6 px-6 text-lg font-semibold">
+          <button onClick={() => setOpen(false)}>
+            <FiX size={26} />
+          </button>
+        </div>
+
+        <nav className="flex flex-col mt-8 gap-5 px-6 text-base font-semibold">
           {links.map((link) => {
             const hasSublinks = !!link.sublinks;
 
@@ -153,7 +193,7 @@ export default function Navbar() {
                 {hasSublinks ? (
                   <>
                     <button
-                      className="flex justify-between items-center w-full"
+                      className="flex justify-between items-center w-full py-2 rounded-lg hover:bg-white/10 px-2 transition"
                       onClick={() =>
                         setOpenDropdownMobile(
                           openDropdownMobile === link.name ? null : link.name
@@ -164,25 +204,28 @@ export default function Navbar() {
                         {link.icon}
                         {link.name}
                       </span>
+
                       <FiChevronDown
-                        className={`transition ${openDropdownMobile === link.name ? "rotate-180" : ""
-                          }`}
+                        className={`transition ${
+                          openDropdownMobile === link.name ? "rotate-180" : ""
+                        }`}
                       />
                     </button>
 
                     <ul
-                      className={`pl-8 flex flex-col gap-2 mt-2 text-base transition-all duration-500 ease-out
-                      ${openDropdownMobile === link.name
-                          ? "max-h-[400px] opacity-100 translate-y-0"
-                          : "max-h-0 opacity-0 -translate-y-3 overflow-hidden"
-                        }`}
+                      className={`pl-6 flex flex-col gap-2 mt-2 text-sm transition-all duration-500
+                      ${
+                        openDropdownMobile === link.name
+                          ? "max-h-[400px] opacity-100"
+                          : "max-h-0 opacity-0 overflow-hidden"
+                      }`}
                     >
                       {link.sublinks.map((sub) => (
                         <li key={sub.href}>
                           <Link
                             href={sub.href}
                             onClick={() => setOpen(false)}
-                            className="flex gap-2 items-center"
+                            className="flex gap-2 items-center py-1"
                           >
                             <FiChevronRight size={14} />
                             {sub.name}
@@ -192,11 +235,10 @@ export default function Navbar() {
                     </ul>
                   </>
                 ) : (
-                  // ✅ Estos ya funcionan perfecto
                   <Link
                     href={link.href}
                     onClick={() => setOpen(false)}
-                    className="flex items-center gap-2"
+                    className="flex items-center gap-2 py-2 rounded-lg hover:bg-white/10 px-2 transition"
                   >
                     {link.icon}
                     {link.name}
@@ -206,22 +248,22 @@ export default function Navbar() {
             );
           })}
 
-          {/* ✅ Carrito Mobile */}
+          {/* Carrito */}
           <Link
             href="/carrito"
             onClick={() => setOpen(false)}
-            className="flex items-center gap-2"
+            className="flex items-center gap-2 py-2 rounded-lg hover:bg-white/10 px-2 transition"
           >
-            <FiShoppingCart size={22} />
+            <FiShoppingCart size={20} />
             Carrito ({totalItems})
           </Link>
         </nav>
       </div>
 
-      {/* ✅ Overlay */}
+      {/* Overlay */}
       {open && (
         <div
-          className="fixed inset-0 bg-black/40 backdrop-blur-sm z-40 transition-opacity duration-500"
+          className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40"
           onClick={() => setOpen(false)}
         />
       )}
